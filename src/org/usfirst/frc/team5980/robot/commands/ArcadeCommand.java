@@ -13,7 +13,7 @@ import org.usfirst.frc.team5980.robot.Robot;
 public class ArcadeCommand extends Command {
 	public ArcadeCommand() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.driveSubsystem);
+		requires(Robot.driveTrain);
 	}
 
 	// Called just before this Command runs the first time
@@ -41,11 +41,11 @@ public class ArcadeCommand extends Command {
 	protected void execute() {
 		//System.out.println("ArcadeCommand.execute");
 		
-		double throttle = deadBand(-Robot.oi.driver.getRawAxis(1)) * Robot.driveSubsystem.speedType;
-		double wheel = deadBand(Robot.oi.driver.getRawAxis(4)) * Robot.driveSubsystem.speedType;
+		double throttle = deadBand(-Robot.oi.driver.getRawAxis(1)) * Robot.driveTrain.speedType;
+		double wheel = deadBand(Robot.oi.driver.getRawAxis(4)) * Robot.driveTrain.speedType;
 		double leftPower = clip (throttle + wheel);
 		double rightPower = clip (throttle - wheel);
-		Robot.driveSubsystem.setPower(leftPower, rightPower);
+		Robot.driveTrain.setPower(leftPower, rightPower);
 		
 		//SmartDashboard.putNumber("Left Encoder: ", Robot.sensors.getLeftEncoder());
 		//SmartDashboard.putNumber("Right Encoder: ", Robot.sensors.getRightEncoder());

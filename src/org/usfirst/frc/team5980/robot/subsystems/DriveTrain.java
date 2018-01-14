@@ -10,7 +10,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 /**
  * Main subsystem for driving/moving the robot via the talons and motors
  */
-public class DriveSubsystem extends Subsystem {
+public class DriveTrain extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -18,7 +18,7 @@ public class DriveSubsystem extends Subsystem {
  
 	public double speedType;
 	public boolean type;
-	public DriveSubsystem() {
+	public DriveTrain() {
 		right1 = new TalonSRX(1);
 		right2 = new TalonSRX(2);
 		left1 = new TalonSRX(3);

@@ -21,7 +21,7 @@ import org.usfirst.frc.team5980.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 	
 	public static ExampleSubsystem exampleSubsystem;
-	public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
+	public static final DriveTrain driveTrain = new DriveTrain();
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -72,7 +72,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		System.out.println("Robot.autonomousInit");
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = new AutoCommand();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -91,7 +91,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		System.out.println("Robot.autonomousPeriodic");
+		//System.out.println("Robot.autonomousPeriodic");
 		Scheduler.getInstance().run();
 	}
 
