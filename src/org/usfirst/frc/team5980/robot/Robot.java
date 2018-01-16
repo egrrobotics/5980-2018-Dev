@@ -20,6 +20,7 @@ import org.usfirst.frc.team5980.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 	
+	public static Sensors sensors = new Sensors();
 	public static ExampleSubsystem exampleSubsystem;
 	public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 	public static OI oi;
@@ -121,6 +122,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		System.out.println("Robot.testPeriodic");
-		LiveWindow.run();
+		//LiveWindow.run();
 	}
 }
