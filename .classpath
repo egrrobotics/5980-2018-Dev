@@ -10,7 +10,7 @@
 	<classpathentry kind="var" path="USERLIBS_DIR/navx_frc.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix-sources.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Strodtbeck/wpilib/user/java/lib/navx_frc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Strodtbeck/wpilib/user/java/lib/CTRE_Phoenix.jar"/>
+	<classpathentry kind="var" path="navx"/>
+	<classpathentry kind="var" path="ctre"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
