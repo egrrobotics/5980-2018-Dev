@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5980.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -10,6 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5980.robot.commands.*;
 import org.usfirst.frc.team5980.robot.subsystems.*;
+import org.usfirst.frc.team5980.robot.utils.GameData;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,24 +25,20 @@ public class Robot extends IterativeRobot {
 	
 	public static ExampleSubsystem exampleSubsystem;
 	public static final DriveTrain driveTrain = new DriveTrain();
-	public static OI oi;
-
-	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
-
+	public static OI oi;    
+	public static GameData gameData = new GameData();		
+	private Command autonomousCommand;
+	private SendableChooser<Command> chooser = new SendableChooser<>();
+		
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
-	public void robotInit() {
-		System.out.println("Robot.robotInit");
-		
+	public void robotInit() {		
 		oi = new OI();
-		
-		chooser.addDefault("Default Auto", new AutoCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		Robot.gameData.pullGameData();
+		this.setupSmartdashboard();	
 	}
 
 	/**
@@ -71,7 +70,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		System.out.println("Robot.autonomousInit");
+		Robot.gameData.pullGameData();
+		
 		autonomousCommand = new AutoCommand();
 
 		/*
@@ -123,4 +123,14 @@ public class Robot extends IterativeRobot {
 		System.out.println("Robot.testPeriodic");
 		LiveWindow.run();
 	}
+	
+	// ---------------------------------------------
+
+	private void setupSmartdashboard() {		
+		chooser.addDefault("Default Auto", new AutoCommand());
+		chooser.addObject("Auto Option 2", new AutoCommand());
+		
+		SmartDashboard.putData("Auto mode", chooser);	
+	}
+	
 }
