@@ -2,6 +2,8 @@ package org.usfirst.frc.team5980.robot;
 
 //import edu.wpi.first.wpilibj.buttons.Button;
 import org.usfirst.frc.team5980.robot.commands.ArcadeCommand;
+
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import org.usfirst.frc.team5980.robot.triggers.*;
 
@@ -14,9 +16,11 @@ public class OI {
 	public XboxController driver = new XboxController(0);
 	public XboxController operator = new XboxController(1);
 	
-	public OI() {	
-		this.driverSetup();
-		//this.operatorSetup();
+	public OI() {
+		if (driver.getButtonCount() > 0)
+			this.driverSetup();
+		if (operator.getButtonCount() > 0)
+			this.operatorSetup();
 	}
 	
 	private void driverSetup() {
