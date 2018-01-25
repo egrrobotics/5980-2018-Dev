@@ -19,6 +19,7 @@ public class DriveToPointCommand extends Command {
 	double addToYaw = 0;
 	EGRPID headingPID = new EGRPID(0.005, 0, 0);
 	EGRPID distancePID = null;
+	
     public DriveToPointCommand(double x, double y, Acceleration accelerate) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -37,6 +38,7 @@ public class DriveToPointCommand extends Command {
     	distance = x;
     	
     }
+    
     protected double normalizeAngle(double angle) {
     	while(angle > 180) {
     		angle-= 360;
@@ -46,13 +48,14 @@ public class DriveToPointCommand extends Command {
     	}
     	return angle;
     }
+    
     // Called just before this Command runs the first time
     protected void initialize() {
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
-    /** protected void execute() {
+    protected void execute() {
      double currentX = Robot.sensors.getXCoordinate();
     	double currentY = Robot.sensors.getYCoordinate();
     	SmartDashboard.putNumber("x: ", currentX);
@@ -86,7 +89,7 @@ public class DriveToPointCommand extends Command {
     	Robot.driveTrain.setPower(leftPower,  rightPower);
     	SmartDashboard.putNumber("leftPower: ", leftPower);
     	SmartDashboard.putNumber("rightPower: ", rightPower);
-    }*/
+    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

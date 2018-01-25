@@ -1,9 +1,6 @@
 package org.usfirst.frc.team5980.robot.commands;
 
-import org.usfirst.frc.team5980.robot.Robot;
 import org.usfirst.frc.team5980.robot.utils.Acceleration;
-
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**

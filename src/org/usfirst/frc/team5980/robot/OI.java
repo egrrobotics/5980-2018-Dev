@@ -1,9 +1,5 @@
 package org.usfirst.frc.team5980.robot;
 
-//import edu.wpi.first.wpilibj.buttons.Button;
-import org.usfirst.frc.team5980.robot.commands.ArcadeCommand;
-
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import org.usfirst.frc.team5980.robot.triggers.*;
 

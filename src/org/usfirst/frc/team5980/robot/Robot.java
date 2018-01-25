@@ -1,14 +1,11 @@
 
 package org.usfirst.frc.team5980.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc.team5980.robot.commands.*;
 import org.usfirst.frc.team5980.robot.subsystems.*;
 import org.usfirst.frc.team5980.robot.utils.GameData;
@@ -23,13 +20,13 @@ import org.usfirst.frc.team5980.robot.utils.GameData;
  */
 public class Robot extends IterativeRobot {
 	
-	public static ExampleSubsystem exampleSubsystem;
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static OI oi;    
 	public static GameData gameData = new GameData();		
 	private Command autonomousCommand;
 	private SendableChooser<Command> chooser = new SendableChooser<>();
-		
+	public static Sensors sensors = new Sensors();	
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -121,7 +118,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		System.out.println("Robot.testPeriodic");
-		LiveWindow.run();
+		//LiveWindow.run();
 	}
 	
 	// ---------------------------------------------
