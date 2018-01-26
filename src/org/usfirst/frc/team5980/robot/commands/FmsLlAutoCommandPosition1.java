@@ -18,5 +18,4 @@ public class FmsLlAutoCommandPosition1 extends CommandGroup {
     	
     }
 
-  
 }

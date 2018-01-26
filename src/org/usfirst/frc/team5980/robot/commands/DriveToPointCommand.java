@@ -56,7 +56,7 @@ public class DriveToPointCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-     double currentX = Robot.sensors.getXCoordinate();
+    	double currentX = Robot.sensors.getXCoordinate();
     	double currentY = Robot.sensors.getYCoordinate();
     	SmartDashboard.putNumber("x: ", currentX);
     	SmartDashboard.putNumber("y: ", currentY);
@@ -69,8 +69,7 @@ public class DriveToPointCommand extends Command {
     	SmartDashboard.putNumber("Yaw: ", Robot.sensors.getYaw());
     	SmartDashboard.putNumber("alpha ", alpha);
     	SmartDashboard.putNumber("beta ", beta);
-    	
-    	
+    	    	
     	double correction = headingPID.getCorrection(beta);
     	if(correction>0.1) correction = 0.1;
     	if(correction<-0.1) correction = -0.1;
@@ -82,8 +81,7 @@ public class DriveToPointCommand extends Command {
     	}
     	//speedFactor = 1;
     	SmartDashboard.putNumber("correction: ", correction);
-    	
-    	
+    	    	
     	double leftPower = (speed - correction) * speedFactor;
     	double rightPower = (speed + correction) * speedFactor;
     	Robot.driveTrain.setPower(leftPower,  rightPower);

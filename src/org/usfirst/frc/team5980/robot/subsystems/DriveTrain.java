@@ -37,9 +37,13 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void setPower(double left, double right) {
-		System.out.println("DriveSubsystem.setPower");
-		System.out.println(left);
-		System.out.println(right);
+		
+		//System.out.println(right1.getSelectedSensorPosition(0));
+		//System.out.println(right1.getSelectedSensorVelocity(0));
+		
+		//System.out.println("DriveSubsystem.setPower");
+		//System.out.println(left);
+		//System.out.println(right);
 	
 		left1.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, left);
 		left2.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, left);

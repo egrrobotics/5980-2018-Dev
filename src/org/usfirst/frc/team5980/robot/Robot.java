@@ -10,6 +10,8 @@ import org.usfirst.frc.team5980.robot.commands.*;
 import org.usfirst.frc.team5980.robot.subsystems.*;
 import org.usfirst.frc.team5980.robot.utils.GameData;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,7 +47,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		System.out.println("Robot.disabledInit");
+		//System.out.println("Robot.disabledInit");
 	}
 
 	@Override
@@ -94,7 +96,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		System.out.println("Robot.teleopInit");
+		//System.out.println("Robot.teleopInit");
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -108,6 +110,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		
+		TalonSRX right1 = new TalonSRX(3);
+
+		SmartDashboard.putNumber("x1:", right1.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("x2:", right1.getSelectedSensorVelocity(0));
+		
+		//System.out.println("-------");
+		//System.out.println(right1.getSelectedSensorPosition(0));
+		//System.out.println(right1.getSelectedSensorVelocity(0));
+		//System.out.println("-------");
+		
 		//System.out.println("Robot.teleopPeriodic");
 		Scheduler.getInstance().run();
 	}
@@ -117,7 +130,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		System.out.println("Robot.testPeriodic");
+		//System.out.println("Robot.testPeriodic");
 		//LiveWindow.run();
 	}
 	
