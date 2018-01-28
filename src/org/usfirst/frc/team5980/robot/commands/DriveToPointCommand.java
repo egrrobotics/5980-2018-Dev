@@ -60,6 +60,7 @@ public class DriveToPointCommand extends Command {
     	double currentY = Robot.sensors.getYCoordinate();
     	SmartDashboard.putNumber("x: ", currentX);
     	SmartDashboard.putNumber("y: ", currentY);
+    	
     	double changeInY = targetY-currentY;
     	double changeInX = targetX-currentX;
     	distance = Math.sqrt(Math.pow(changeInY, 2) + Math.pow(changeInX, 2));

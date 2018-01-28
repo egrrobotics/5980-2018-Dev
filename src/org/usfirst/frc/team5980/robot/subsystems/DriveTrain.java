@@ -17,11 +17,14 @@ public class DriveTrain extends Subsystem {
 	
 	public DriveTrain() {
 		right1 = new TalonSRX(1);
-		right2 = new TalonSRX(2);
+		right2 = new TalonSRX(5);
+		
 		left1 = new TalonSRX(3);
 		left2 = new TalonSRX(4);
+		
 		//right1.setInverted(true);
 		//right2.setInverted(true);
+		
 		speedType = 1;
 		type = true;
 	}
@@ -47,6 +50,7 @@ public class DriveTrain extends Subsystem {
 	
 		left1.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, left);
 		left2.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, left);
+		
 		right1.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, right);
 		right2.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, right);
 	}

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5980.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
@@ -23,6 +24,9 @@ public class Sensors extends Subsystem {
 	double lastRightEncoder = 0;
 	boolean encoderInvert = false;
 	public double encoderCountsPerInch = 19.5;
+	
+	TalonSRX rightTalon = new TalonSRX(6);
+	TalonSRX leftTalon = new TalonSRX(3);
 	
 	public Sensors() {
 		System.out.println("*****");
@@ -61,19 +65,17 @@ public class Sensors extends Subsystem {
 	}
 	
 	public int getLeftEncoder() {
+		//System.out.println("getting Left Encoder");
 		int encoderValue;
-		encoderValue = leftEncoder.get() - leftEncoderOffset;
-		return encoderValue;
-		
+		int leftEncoderVal = this.leftTalon.getSelectedSensorPosition(0); // leftEncoder.get();
+		encoderValue = leftEncoderVal - leftEncoderOffset;
+		return encoderValue;		
 	}
 	
 	public int getRightEncoder() {
-		System.out.println("*****");
-		System.out.println(rightEncoder.getRate());
-		System.out.println("*****");
-		
 		int encoderValue;
-		encoderValue = rightEncoder.get() - rightEncoderOffset;
+		int rightEncoderVal = this.rightTalon.getSelectedSensorPosition(0);  //rightEncoder.get();
+		encoderValue = rightEncoderVal - rightEncoderOffset;
 		return encoderValue;
 	}
 	
@@ -85,10 +87,12 @@ public class Sensors extends Subsystem {
 	}
 	
 	public void resetSensors() {
-		leftEncoderOffset = leftEncoder.get();
-		rightEncoderOffset = rightEncoder.get();
+		leftEncoderOffset = this.leftTalon.getSelectedSensorPosition(0);
+		rightEncoderOffset = this.rightTalon.getSelectedSensorPosition(0);
+		
 		lastLeftEncoder = 0;
 		lastRightEncoder = 0;
+		
 		yawOffset = navX.getYaw();
 	}
 	

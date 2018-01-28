@@ -38,6 +38,8 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		Robot.gameData.pullGameData();
 		this.setupSmartdashboard();	
+		Robot.sensors.resetSensors();
+		this.updateSmartdashboard();
 	}
 
 	/**
@@ -96,6 +98,9 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		TalonSRX right1 = new TalonSRX(3);
+		right1.setSelectedSensorPosition(0, 0, 0);
+		
 		//System.out.println("Robot.teleopInit");
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
@@ -111,11 +116,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		
-		TalonSRX right1 = new TalonSRX(3);
-
-		SmartDashboard.putNumber("x1:", right1.getSelectedSensorPosition(0));
-		SmartDashboard.putNumber("x2:", right1.getSelectedSensorVelocity(0));
-		
+		this.updateSmartdashboard();
+		    	
 		//System.out.println("-------");
 		//System.out.println(right1.getSelectedSensorPosition(0));
 		//System.out.println(right1.getSelectedSensorVelocity(0));
@@ -142,5 +144,25 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putData("Auto mode", chooser);	
 	}
+	
+	private void updateSmartdashboard() {
+		System.out.println("updateSmartdashboard");
+
+		Robot.sensors.updatePosition();
+		TalonSRX left1 = new TalonSRX(3); //3
+		TalonSRX right1 = new TalonSRX(6); //3
+
+		SmartDashboard.putNumber("L SensorPos:", Robot.sensors.getLeftEncoder() );  // left1.getSelectedSensorPosition(0)
+		SmartDashboard.putNumber("L SensorVel:", left1.getSelectedSensorVelocity(0));
+
+		SmartDashboard.putNumber("R SensorPos:", Robot.sensors.getRightEncoder() );
+		SmartDashboard.putNumber("R SensorVel:", right1.getSelectedSensorVelocity(0));
+		
+	   	double currentX = Robot.sensors.getXCoordinate();
+    	double currentY = Robot.sensors.getYCoordinate();
+    	SmartDashboard.putNumber("x: ", currentX);
+    	SmartDashboard.putNumber("y: ", currentY);
+    	SmartDashboard.putNumber("yaw: ", Robot.sensors.getYaw());	
+    }
 	
 }

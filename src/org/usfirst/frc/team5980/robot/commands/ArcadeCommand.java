@@ -1,6 +1,10 @@
 package org.usfirst.frc.team5980.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import java.text.DecimalFormat;
+
 import org.usfirst.frc.team5980.robot.Robot;
 
 /**
@@ -26,7 +30,9 @@ public class ArcadeCommand extends Command {
     	}
     }
     
+    
     public double clip(double x){
+    	
     	if (x>.885) return .885;
     	if (x<-.885) return -.885;
     	return x;
@@ -35,21 +41,29 @@ public class ArcadeCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		//System.out.println("ArcadeCommand.execute");
 		
-		double throttle = deadBand(-Robot.oi.driver.getRawAxis(1)) * Robot.driveTrain.speedType;
-		double wheel = deadBand(Robot.oi.driver.getRawAxis(4)) * Robot.driveTrain.speedType;
-		double leftPower = clip (throttle + wheel);
-		double rightPower = clip (throttle - wheel);
+		// leftPower and rightPower will be opposite (i.e 5 and -5) if the robot is going straight
+		
+		double throttle = deadBand(Robot.oi.driver.getRawAxis(1)) * Robot.driveTrain.speedType;		//Axis 4 is 	
+		
+		//if (throttle > .2)
+		//	throttle = .2;
+		//else if (throttle < .2)
+		//	throttle = -.2;
+			
+		double wheel = deadBand(Robot.oi.driver.getRawAxis(4)) * Robot.driveTrain.speedType;				
+		double leftPower = (-1 * throttle) + wheel ;
+		double rightPower = throttle + wheel;
+		
 		Robot.driveTrain.setPower(leftPower, rightPower);
 		
-		//SmartDashboard.putNumber("Left Encoder: ", Robot.sensors.getLeftEncoder());
-		//SmartDashboard.putNumber("Right Encoder: ", Robot.sensors.getRightEncoder());
-		
-		//check the various ways to get coordinates from the xboxController
-		//System.out.println( Robot.oi.driver.getRawAxis(AxisType.kX.value) );
-		//System.out.println( Robot.oi.driver.getY(Hand.kLeft) );
-		//System.out.println( Robot.oi.driver.getX(Hand.kRight) );				
+		SmartDashboard.putNumber("Left Power: ", leftPower);
+		SmartDashboard.putNumber("Right Power: ", rightPower);
+		if (leftPower != 0 || rightPower != 0) {
+			DecimalFormat df = new DecimalFormat("#.###");
+			System.out.print("Throttle / Wheel: "); System.out.print(df.format(throttle)); System.out.print(" / ") ;System.out.println(df.format(wheel));
+		    System.out.print("Left / Right Power: "); System.out.print(df.format(leftPower)); System.out.print(" / ") ;System.out.println(df.format(rightPower));
+		}			
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
