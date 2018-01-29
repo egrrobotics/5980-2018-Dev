@@ -20,7 +20,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot {
+public class Robot extends IterativeRobot {	
 	
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static OI oi;    
@@ -38,7 +38,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		Robot.gameData.pullGameData();
 		this.setupSmartdashboard();	
-		Robot.sensors.resetSensors();
 		this.updateSmartdashboard();
 	}
 
@@ -139,24 +138,19 @@ public class Robot extends IterativeRobot {
 	// ---------------------------------------------
 
 	private void setupSmartdashboard() {		
-		chooser.addDefault("Default Auto", new AutoCommand());
-		chooser.addObject("Auto Option 2", new AutoCommand());
-		
+		chooser.addDefault("Autonomous option 1", new AutoCommand());
+		chooser.addObject("Autonomous option 2", new AutoCommand());		
 		SmartDashboard.putData("Auto mode", chooser);	
 	}
 	
 	private void updateSmartdashboard() {
-		System.out.println("updateSmartdashboard");
-
 		Robot.sensors.updatePosition();
-		TalonSRX left1 = new TalonSRX(3); //3
-		TalonSRX right1 = new TalonSRX(6); //3
 
 		SmartDashboard.putNumber("L SensorPos:", Robot.sensors.getLeftEncoder() );  // left1.getSelectedSensorPosition(0)
-		SmartDashboard.putNumber("L SensorVel:", left1.getSelectedSensorVelocity(0));
+		SmartDashboard.putNumber("L SensorVel:", Talons.leftTalon.getSelectedSensorVelocity(0));
 
 		SmartDashboard.putNumber("R SensorPos:", Robot.sensors.getRightEncoder() );
-		SmartDashboard.putNumber("R SensorVel:", right1.getSelectedSensorVelocity(0));
+		SmartDashboard.putNumber("R SensorVel:", Talons.rightTalon.getSelectedSensorVelocity(0));
 		
 	   	double currentX = Robot.sensors.getXCoordinate();
     	double currentY = Robot.sensors.getYCoordinate();

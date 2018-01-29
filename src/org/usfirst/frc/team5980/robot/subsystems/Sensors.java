@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5980.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
@@ -11,8 +10,11 @@ import edu.wpi.first.wpilibj.SPI;
  *
  */
 public class Sensors extends Subsystem {
-	Encoder leftEncoder = new Encoder(2, 3);
-	Encoder rightEncoder = new Encoder(9, 8);
+	
+	private boolean usingTalonEncoders = true;	   		// <-- move constant to RobotMap (robot setup class)
+	private Encoder leftEncoder = new Encoder(2, 3);	// <-- move constant to RobotMap (robot setup class)
+	private Encoder rightEncoder = new Encoder(9, 8);	// <-- move constant to RobotMap (robot setup class)
+
 	//static Potentiometer pot = new AnalogPotentiometer(0, 360, 10); //Channel number for Analog input, scale factor 360 being the great, offset to add after scaling to prevent breakage (10 to 30 range) 
 	static AHRS navX;
 	int rightEncoderOffset = 0;
@@ -25,19 +27,14 @@ public class Sensors extends Subsystem {
 	boolean encoderInvert = false;
 	public double encoderCountsPerInch = 19.5;
 	
-	TalonSRX rightTalon = new TalonSRX(6);
-	TalonSRX leftTalon = new TalonSRX(3);
-	
 	public Sensors() {
-		System.out.println("*****");
-		System.out.println(rightEncoder.getRate());
-		System.out.println("*****");
 		try {
 			navX = new AHRS(SPI.Port.kMXP);
 		}
 		catch(RuntimeException ex) {
 			DriverStation.reportError("error instantiating navX: " + ex.getMessage(), true);
 		}
+		this.resetSensors();
 	}
 	
 	public float getYaw() {
@@ -64,18 +61,29 @@ public class Sensors extends Subsystem {
 		return pitch;
 	}
 	
+	private int getLeftEncoderPosition() {
+		if (this.usingTalonEncoders)
+			return Talons.leftTalon.getSelectedSensorPosition(0);
+		else
+			return this.leftEncoder.get();
+	}
+	
+	private int getRightEncoderPosition() {
+		if (this.usingTalonEncoders)
+			return Talons.rightTalon.getSelectedSensorPosition(0);
+		else
+			return this.rightEncoder.get();
+	}
+	
 	public int getLeftEncoder() {
-		//System.out.println("getting Left Encoder");
-		int encoderValue;
-		int leftEncoderVal = this.leftTalon.getSelectedSensorPosition(0); // leftEncoder.get();
-		encoderValue = leftEncoderVal - leftEncoderOffset;
+		int leftEncoderVal = this.getLeftEncoderPosition(); 	// this.leftTalon.getSelectedSensorPosition(0); // leftEncoder.get();
+		int encoderValue = leftEncoderVal - leftEncoderOffset;
 		return encoderValue;		
 	}
 	
 	public int getRightEncoder() {
-		int encoderValue;
-		int rightEncoderVal = this.rightTalon.getSelectedSensorPosition(0);  //rightEncoder.get();
-		encoderValue = rightEncoderVal - rightEncoderOffset;
+		int rightEncoderVal = this.getRightEncoderPosition(); 	// this.rightTalon.getSelectedSensorPosition(0);  //rightEncoder.get();
+		int encoderValue = rightEncoderVal - rightEncoderOffset;
 		return encoderValue;
 	}
 	
@@ -87,8 +95,8 @@ public class Sensors extends Subsystem {
 	}
 	
 	public void resetSensors() {
-		leftEncoderOffset = this.leftTalon.getSelectedSensorPosition(0);
-		rightEncoderOffset = this.rightTalon.getSelectedSensorPosition(0);
+		leftEncoderOffset = this.getLeftEncoderPosition();
+		rightEncoderOffset = this.getRightEncoderPosition();
 		
 		lastLeftEncoder = 0;
 		lastRightEncoder = 0;
@@ -107,11 +115,13 @@ public class Sensors extends Subsystem {
 	public void resetRightEncoder() {
 		rightEncoder.reset();
 	}
+	
 	/*
 	public double getPot() {
 		return pot.get();
 	}
 	*/
+	
 	/* public ConfigFwdLimitSwitchNormallyOpen() {
 		if(btn4) {
 			customMotorDescrip.ConfigFwdLimitSwitchNormallyOpen(true);
@@ -127,6 +137,7 @@ public class Sensors extends Subsystem {
 		}
 	}
 	*/
+	
 	public void updatePosition() {
 		double currentLeftEncoder = getLeftEncoder();
 		double currentRightEncoder = getRightEncoder();
