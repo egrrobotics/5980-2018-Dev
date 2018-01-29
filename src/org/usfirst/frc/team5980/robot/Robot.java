@@ -72,7 +72,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData.pullGameData();
 		
-		autonomousCommand = new AutoCommand();
+		autonomousCommand = new DriveForwardAuto(.5, 5000, 0);
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
