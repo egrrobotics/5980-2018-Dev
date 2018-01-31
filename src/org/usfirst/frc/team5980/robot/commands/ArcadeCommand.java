@@ -44,7 +44,7 @@ public class ArcadeCommand extends Command {
 		
 		// leftPower and rightPower will be opposite (i.e 5 and -5) if the robot is going straight
 		
-		double throttle = deadBand(Robot.oi.driver.getRawAxis(1)) * Robot.driveTrain.speedType;		//Axis 4 is 	
+		double throttle = deadBand(-Robot.oi.driver.getRawAxis(1)) * Robot.driveTrain.speedType;		//Axis 1 is left joystick up/down, up is -1 (thats why its inverted)	
 		
 		//if (throttle > .2)
 		//	throttle = .2;
@@ -52,13 +52,12 @@ public class ArcadeCommand extends Command {
 		//	throttle = -.2;
 			
 		double wheel = deadBand(Robot.oi.driver.getRawAxis(4)) * Robot.driveTrain.speedType;				
-		double leftPower = (-1 * throttle) + wheel ;
-		double rightPower = throttle + wheel;
+		double leftPower = clip(throttle + wheel);//clip is necessary to keep power levels between -1 and 1
+		double rightPower = clip(throttle - wheel);
 		
 		Robot.driveTrain.setPower(leftPower, rightPower);
 		
-		SmartDashboard.putNumber("Left Power: ", leftPower);
-		SmartDashboard.putNumber("Right Power: ", rightPower);
+		
 		if (leftPower != 0 || rightPower != 0) {
 			DecimalFormat df = new DecimalFormat("#.###");
 			System.out.print("Throttle / Wheel: "); System.out.print(df.format(throttle)); System.out.print(" / ") ;System.out.println(df.format(wheel));

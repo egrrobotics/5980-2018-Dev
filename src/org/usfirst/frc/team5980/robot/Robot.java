@@ -37,8 +37,10 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {		
 		oi = new OI();
 		Robot.gameData.pullGameData();
-		this.setupSmartdashboard();	
-		this.updateSmartdashboard();
+		//this.setupSmartdashboard();	
+		//this.updateSmartdashboard();
+		
+		sensors.resetSensors();
 	}
 
 	/**
@@ -71,8 +73,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		Robot.gameData.pullGameData();
-		
-		autonomousCommand = new DriveForwardAuto(.5, 5000, 0);
+		sensors.resetSensors();
+		autonomousCommand = new DriveForwardAuto(.2, 100, 0);
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -115,7 +117,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		
-		this.updateSmartdashboard();
+		//this.updateSmartdashboard();
 		    	
 		//System.out.println("-------");
 		//System.out.println(right1.getSelectedSensorPosition(0));
@@ -140,7 +142,7 @@ public class Robot extends IterativeRobot {
 	private void setupSmartdashboard() {		
 		chooser.addDefault("Autonomous option 1", new AutoCommand());
 		chooser.addObject("Autonomous option 2", new AutoCommand());		
-		SmartDashboard.putData("Auto mode", chooser);	
+		//SmartDashboard.putData("Auto mode", chooser);	
 	}
 	
 	private void updateSmartdashboard() {

@@ -22,8 +22,8 @@ public class DriveTrain extends Subsystem {
 		left1 = new TalonSRX(3);
 		left2 = new TalonSRX(4);
 		
-		//right1.setInverted(true);
-		//right2.setInverted(true);
+		right1.setInverted(true);//ESSENTIAL! One side will have to be the opposite direction to go the same direction
+		right2.setInverted(true);
 		
 		speedType = 1;
 		type = true;
