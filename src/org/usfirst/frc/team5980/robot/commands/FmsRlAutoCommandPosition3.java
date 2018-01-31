@@ -1,11 +1,11 @@
 package org.usfirst.frc.team5980.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class FmsRlAutoCommandPosition3 extends Command {
+public class FmsRlAutoCommandPosition3 extends CommandGroup {
 
     public FmsRlAutoCommandPosition3() {
         // Use requires() here to declare subsystem dependencies
