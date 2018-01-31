@@ -16,14 +16,12 @@ public class FmsRrAutoCommandPosition3 extends CommandGroup {
     	 * (Denoted by all commands without "//")
     	
     	addSequential(new DriveForwardAutoCommand(power, distance, heading));
-    	//addSequential(new RotateToHeadingCommand(heading, power));
-    	//addSequential(new DriveForwardAutoCommand(p, d, h));
+    	//addSequential(new TurretCommand(spin));
     	//addParallel(new ElevatorLiftCommand(lift for time));
     	//addSequential(new DropCubeCommand(power));
-    	//addSequential(new DriveBackwardsAutoCommand(p, d, h));
+    	//addSequential(new DriveForwardsAutoCommand(p, d, h));
     	//addParallel(new ElevatorDropCommand(drop for time));
     	
-    	//addSequential(new DriveForwardAutoCommand(p, d, h));
     	//addSequential(new RotateToHeadingCommand(h, p));
     	//addSequential(new DriveForwardAutoCommand(p, d, h));
     	//addParallel(new GrabCubeCommand(power));
@@ -31,8 +29,7 @@ public class FmsRrAutoCommandPosition3 extends CommandGroup {
     	//addSequential(new RotateToHeadingCommand(h, p));
     	
     	//addSequential(new DriveForwardAutoCommand(p, d, h));
-    	addSequential(new RotateToHeadingCommand(h, p));
-    	addSequential(new DriveForwardAutoCommand(p, d, h));
+    	addSequential(new TurretCommand(spin));
     	addParalllel(new ElevatorLiftCommand(lift for time)); 
     	addSequential(new DropCubeCommand(power));
 

@@ -8,29 +8,21 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class FmsRrAutoCommandPosition2 extends CommandGroup {
 
     public FmsRrAutoCommandPosition2() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        /* Place a cube in the right side switch
+         * Pick up another cube from the middle front group of the field
+         * 
+         addSequential(new DriveForwardAutoCommand(power, distance, heading));
+         addSequential(new RotateToHeading(heading, power));
+         addSequential(new DriveForwardAutoCommand(power, distance, heading));
+         addSequential(new RotateToHeading(heading, power));
+         addSequential(new DriveForwardAutoCommand(power, distance, heading));
+         addParallel(new ElevatorLiftCommand(lift for time));
+         addSequential(new DropCubeCommand(power));
+        
+         addSequential(new DriveBackwardsAutoCommand(power, distance, heading));
+         addSequential(new RotateToHeading(heading, power));
+         * 
+         */
     }
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
-
-    // Called once after isFinished returns true
-    protected void end() {
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
 }
