@@ -74,7 +74,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData.pullGameData();
 		sensors.resetSensors();
-		autonomousCommand = new DriveForwardAuto(.2, 100, 0);
+		autonomousCommand = new FmsLlAutoCommandPosition1();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
