@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveForwardAuto extends Command {
 
 	 EGRPID drivePID = new EGRPID(.02, 0, 0);
-	 EGRPID stopPID = new EGRPID(.008, 0, 0);
+	 EGRPID stopPID = new EGRPID(.0002, 0, 0);
 	 double maxSpeed;
 	 int distance;
 	 double heading;
@@ -44,7 +44,7 @@ public class DriveForwardAuto extends Command {
     	double correction = drivePID.getCorrection(Robot.sensors.getYaw());
     	if (speed < maxSpeed) {
     		speed += 0.04;
-    	}
+    	} 
     	Robot.driveTrain.setPower((speed - correction)*stopCorrection, (speed + correction)*stopCorrection);
     	
     }
@@ -57,7 +57,6 @@ public class DriveForwardAuto extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.driveTrain.setPower(0, 0);
-
     }
 
     // Called when another command which requires one or more of the same
