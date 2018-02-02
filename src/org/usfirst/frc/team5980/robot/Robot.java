@@ -23,6 +23,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 public class Robot extends IterativeRobot {	
 	
 	public static final DriveTrain driveTrain = new DriveTrain();
+	public static final TurretElevator turretElevator = new TurretElevator();
 	public static OI oi;    
 	public static GameData gameData = new GameData();		
 	private Command autonomousCommand;
@@ -95,6 +96,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		//System.out.println("Robot.autonomousPeriodic");
 		Scheduler.getInstance().run();
+		updateSmartdashboard();
 	}
 
 	@Override

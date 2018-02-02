@@ -33,8 +33,8 @@ public class ArcadeCommand extends Command {
     
     public double clip(double x){
     	
-    	if (x>.885) return .885;
-    	if (x<-.885) return -.885;
+    	if (x>.75) return .75;
+    	if (x<-.75) return -.75;
     	return x;
     }
     

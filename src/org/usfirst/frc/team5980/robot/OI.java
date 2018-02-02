@@ -1,6 +1,10 @@
 package org.usfirst.frc.team5980.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
+import org.usfirst.frc.team5980.robot.commands.SetIntakePower;
 import org.usfirst.frc.team5980.robot.triggers.*;
 
 /**
@@ -17,6 +21,10 @@ public class OI {
 			this.driverSetup();
 		if (operator.getButtonCount() > 0)
 			this.operatorSetup();
+		Button buttonB = new JoystickButton(operator, 2); //button B on xbox
+		Button buttonA = new JoystickButton(operator, 1); //button A on xbox
+		buttonA.whileHeld(new SetIntakePower(-1));
+		buttonB.whileHeld(new SetIntakePower(1));//sets intake to take in box
 	}
 	
 	private void driverSetup() {
@@ -28,6 +36,10 @@ public class OI {
 		XboxTrigger testButton = new XboxTrigger(operator, XboxTrigger.LB);
 		testButton.whileActive(null);		
 	}
+	
+		
+	
+
 	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
