@@ -8,29 +8,28 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class FmsLrAutoCommandPosition2 extends CommandGroup {
 
     public FmsLrAutoCommandPosition2() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    }
-
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
-
-    // Called once after isFinished returns true
-    protected void end() {
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
+        /* Place cube on the scale to the right, 
+         * stay close to alliance wall to avoid other robots
+         * OR
+         * Place cube on the switch to the left
+         * 
+         addSequential(new DriveForwardAuto(power, distance, heading));
+         addSequential(new RotateToHeading(heading, power)); //right
+         addSequential(new DriveForwardAuto(power, distance, heading)); //to the right
+         addSequential(new RotateToHeading(heading, power)); //forward
+         addSequential(new DriveForwardAuto(power, distance, heading)); //forwards
+         addParallel(new ElevatorLiftCommand(lift));
+         addParallel(new TurretCommand(spin susan));
+         addSequential(new PauseAuto(pause time));
+         addSequential(new DropCubeCommand(bye cube));
+         *
+         *
+         addSequential(new DriveForwardAuto(power, distance, heading));
+         addSequential(new RotateToHeading(heading, power));
+         addSequential(new DriveForwardAuto(power, distance, heading));
+         addParallel(new TurretCommand(spin)); //rotate to the right, robot facing left
+         addParallel(new ElevatorLift(woo)); 
+         addSequential(new DropCubeCommand(bye cube));
+         */
     }
 }
