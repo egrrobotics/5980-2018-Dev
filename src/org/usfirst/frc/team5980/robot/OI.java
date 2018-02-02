@@ -21,10 +21,14 @@ public class OI {
 			this.driverSetup();
 		if (operator.getButtonCount() > 0)
 			this.operatorSetup();
-		Button buttonB = new JoystickButton(operator, 2); //button B on xbox
-		Button buttonA = new JoystickButton(operator, 1); //button A on xbox
-		buttonA.whileHeld(new SetIntakePower(-1));
-		buttonB.whileHeld(new SetIntakePower(1));//sets intake to take in box
+		
+		// ***
+		// *** moved into operatorSetup below and changed use xboxTriggers...  needs to be tested
+		// ***
+		//Button buttonB = new JoystickButton(operator, 2); //button B on xbox
+		//Button buttonA = new JoystickButton(operator, 1); //button A on xbox
+		//buttonA.whileHeld(new SetIntakePower(-1));
+		//buttonB.whileHeld(new SetIntakePower(1));//sets intake to take in box
 	}
 	
 	private void driverSetup() {
@@ -33,14 +37,17 @@ public class OI {
 	}
 	
 	private void operatorSetup() {
-		XboxTrigger testButton = new XboxTrigger(operator, XboxTrigger.LB);
-		testButton.whileActive(null);		
+		//XboxTrigger testButton = new XboxTrigger(operator, XboxTrigger.LB);
+		//testButton.whileActive(null);
+				
+		XboxTrigger buttonA = new XboxTrigger(operator, XboxTrigger.A); //button A on xbox
+		buttonA.whileActive(new SetIntakePower(-1));
+
+		XboxTrigger buttonB = new XboxTrigger(operator, XboxTrigger.B); //button B on xbox
+		buttonB.whileActive(new SetIntakePower(1));		//sets intake to take in box		
 	}
 	
-		
-	
-
-	
+			
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
