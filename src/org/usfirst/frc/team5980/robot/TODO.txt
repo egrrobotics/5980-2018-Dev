@@ -1,0 +1,10 @@
+
+Choose AutoCommand
+
+PIDs for each robot
+
+Compensate for diff motor/gearbox diffs
+
+Any way to determine if sensors hooked up to talon or DIO ports
+
+if not getting sensor data, WARN and dont allow autonomous code
