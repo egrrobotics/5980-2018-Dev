@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.SPI;
  */
 public class Sensors extends Subsystem {
 	
-	private boolean usingTalonEncoders = true;	   		// <-- move constant to RobotMap (robot setup class)
-	private Encoder leftEncoder = new Encoder(2, 3);	// <-- move constant to RobotMap (robot setup class)
-	private Encoder rightEncoder = new Encoder(9, 8);	// <-- move constant to RobotMap (robot setup class)
+	private boolean usingTalonEncoders = false;	   		// <-- move constant to RobotMap (robot setup class)
+	private Encoder leftEncoder = new Encoder(0, 1);	// <-- move constant to RobotMap (robot setup class)
+	private Encoder rightEncoder = new Encoder(8, 9);	// <-- move constant to RobotMap (robot setup class)
 
 	//static Potentiometer pot = new AnalogPotentiometer(0, 360, 10); //Channel number for Analog input, scale factor 360 being the great, offset to add after scaling to prevent breakage (10 to 30 range) 
 	static AHRS navX;
@@ -78,7 +78,10 @@ public class Sensors extends Subsystem {
 	public int getLeftEncoder() {
 		int leftEncoderVal = this.getLeftEncoderPosition(); 	// this.leftTalon.getSelectedSensorPosition(0); // leftEncoder.get();
 		int encoderValue = leftEncoderVal - leftEncoderOffset;
-		return encoderValue;		
+		if (this.usingTalonEncoders)
+			return encoderValue;
+		else
+			return encoderValue*-1;		
 	}
 	
 	public int getRightEncoder() {
