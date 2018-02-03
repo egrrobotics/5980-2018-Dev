@@ -58,13 +58,14 @@ public class ArcadeCommand extends Command {
 		Robot.driveTrain.setPower(leftPower, rightPower);
 		
 		
-		if (leftPower != 0 || rightPower != 0) {
-			DecimalFormat df = new DecimalFormat("#.###");
-			System.out.print("Throttle / Wheel: "); System.out.print(df.format(throttle)); System.out.print(" / ") ;System.out.println(df.format(wheel));
-		    System.out.print("Left / Right Power: "); System.out.print(df.format(leftPower)); System.out.print(" / ") ;System.out.println(df.format(rightPower));
-		    
-		}	
-		SmartDashboard.putNumber("left encoder; ", Robot.sensors.getLeftEncoder());
+		//if (leftPower != 0 || rightPower != 0) {
+		//	DecimalFormat df = new DecimalFormat("#.###");
+		//	System.out.print("Throttle / Wheel: "); System.out.print(df.format(throttle)); System.out.print(" / ") ;System.out.println(df.format(wheel));
+		//    System.out.print("Left / Right Power: "); System.out.print(df.format(leftPower)); System.out.print(" / ") ;System.out.println(df.format(rightPower));
+		//    
+		//}
+		
+		//SmartDashboard.putNumber("left encoder; ", Robot.sensors.getLeftEncoder());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
