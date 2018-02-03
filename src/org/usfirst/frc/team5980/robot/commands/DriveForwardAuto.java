@@ -12,20 +12,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveForwardAuto extends Command {
 
 	 EGRPID drivePID = new EGRPID(.02, 0, 0);
-	 EGRPID stopPID = new EGRPID(.00015, 0, 0);
+	 EGRPID stopPID; //.0006 for 20% speed, .000125 for 30% speed
 	 double maxSpeed;
 	 int distance;
 	 double heading;
 	 double speed = 0;
 	 double encoderTarget;
+	 double stopTime;
 	 
-    public DriveForwardAuto(double speed, int distance, double heading) {
+    public DriveForwardAuto(double speed, int distance, double heading, double stopP) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
         this.maxSpeed = speed;
         this.distance = distance;
         this.heading = heading;
+        this.stopPID = new EGRPID(stopP, 0, 0);
     }
 
     // Called just before this Command runs the first time
@@ -33,6 +35,7 @@ public class DriveForwardAuto extends Command {
     	encoderTarget = Robot.sensors.getLeftEncoder() + distance * Robot.sensors.encoderCountsPerInch;
     	drivePID.setTarget(heading);
     	stopPID.setTarget(encoderTarget);
+    	stopTime = System.currentTimeMillis() + 7000;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -45,13 +48,16 @@ public class DriveForwardAuto extends Command {
     	if (speed < maxSpeed) {
     		speed += 0.04;
     	} 
+    	if(encoderTarget-Robot.sensors.getLeftEncoder() < 300) {
+    		correction = 0;
+    	}
     	Robot.driveTrain.setPower((speed - correction)*stopCorrection, (speed + correction)*stopCorrection);
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.sensors.getLeftEncoder() > encoderTarget-30;
+        return Robot.sensors.getLeftEncoder() > encoderTarget-30 || System.currentTimeMillis() > stopTime;
     }
 
     // Called once after isFinished returns true

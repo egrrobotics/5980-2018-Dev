@@ -32,8 +32,11 @@ public class FmsRrAutoCommandPosition3 extends CommandGroup {
     	addSequential(new TurretCommand(spin));
     	addParalllel(new ElevatorLiftCommand(lift for time)); 
     	addSequential(new DropCubeCommand(power));
-
     	 */
-
+    	addSequential(new DriveForwardAuto(.3, 136, 0, .000125));
+    	addSequential(new PauseAuto(1000));
+    	addSequential(new DriveForwardAuto(.3, 18, 0, .000125));
+    	addSequential(new PauseAuto(2000));
+    	addSequential(new DriveForwardAuto(.3, 36, 0, .000125));
     }
 }

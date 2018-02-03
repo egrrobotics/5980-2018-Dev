@@ -62,7 +62,9 @@ public class ArcadeCommand extends Command {
 			DecimalFormat df = new DecimalFormat("#.###");
 			System.out.print("Throttle / Wheel: "); System.out.print(df.format(throttle)); System.out.print(" / ") ;System.out.println(df.format(wheel));
 		    System.out.print("Left / Right Power: "); System.out.print(df.format(leftPower)); System.out.print(" / ") ;System.out.println(df.format(rightPower));
-		}			
+		    
+		}	
+		SmartDashboard.putNumber("left encoder; ", Robot.sensors.getLeftEncoder());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
