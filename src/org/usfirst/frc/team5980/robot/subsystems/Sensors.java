@@ -25,7 +25,7 @@ public class Sensors extends Subsystem {
 	double lastLeftEncoder = 0;
 	double lastRightEncoder = 0;
 	boolean encoderInvert = false;
-	public double encoderCountsPerInch = 206; //189
+	public double encoderCountsPerInch = 206; //189, 40 for Jacob
 	
 	public Sensors() {
 		try {

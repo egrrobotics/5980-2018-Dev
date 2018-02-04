@@ -23,11 +23,15 @@ public class FmsRlAutoCommandPosition2 extends CommandGroup {
          addSequential(new DropCubeCommand(bye cube));
          *
          */
-    	 addSequential(new DriveForwardAuto(.3, 60, 0));
-         addSequential(new RotateToHeading(.3, 45)); //right
-         addSequential(new DriveForwardAuto(.3, 48, 60)); //to the right
-         addSequential(new RotateToHeading(.3, 0));
-         addSequential(new DriveForwardAuto(.3, 20, 0));
+    	 addSequential(new DriveCommand(.3, 100, 0));
+    	 //addSequential(new PauseAuto(2000));
+         //addSequential(new RotateToHeading(.3, -45)); //right
+         //addSequential(new DriveForwardAuto(.3, 10, -45, 0)); //to the right
+         //addSequential(new PauseAuto(2000));
+         //addSequential(new RotateToHeading(.3, -360));
+         //addSequential(new PauseAuto(2000));
+         //addSequential(new DriveCommand(.3, -15, 0));
+         //addSequential(new DriveForwardAuto(.3, 10, 0, 0));
          //addParallel(new TurretCommand(spin)); //rotate to the left, robot facing right
          //addParallel(new ElevatorLift(woo)); 
          //addSequential(new DropCubeCommand(bye cube));

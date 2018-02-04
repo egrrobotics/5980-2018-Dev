@@ -26,10 +26,12 @@ public class DriveCommand extends Command {
         this.maxSpeed = speed;
         this.distance = distance;
         this.heading = heading;
+        
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.sensors.resetSensors();
     	encoderTarget = Robot.sensors.getLeftEncoder() + distance * Robot.sensors.encoderCountsPerInch;
     	drivePID.setTarget(heading);
     	stopPID.setTarget(encoderTarget);
@@ -63,7 +65,7 @@ public class DriveCommand extends Command {
     protected boolean isFinished() {
     	SmartDashboard.putNumber("encoderTarget: ", Math.abs(encoderTarget));
     	SmartDashboard.putNumber("currentEncoder: ", Math.abs(Robot.sensors.getLeftEncoder()));
-    	SmartDashboard.putNumber("counter:", Robot.Counter++);
+    	//SmartDashboard.putNumber("counter:", Robot.Counter++);
         return Math.abs(Robot.sensors.getLeftEncoder()) > Math.abs(encoderTarget-30);
         
         
