@@ -75,7 +75,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData.pullGameData();
 		sensors.resetSensors();
-		autonomousCommand = new FmsLlAutoCommandPosition1();
+		autonomousCommand = new RotateToHeading(.3, 90);
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -96,7 +96,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		//System.out.println("Robot.autonomousPeriodic");
 		Scheduler.getInstance().run();
-		updateSmartdashboard();
+		//updateSmartdashboard();
 	}
 
 	@Override

@@ -57,7 +57,9 @@ public class DriveForwardAuto extends Command {
 		if (encoderTarget - Robot.sensors.getLeftEncoder() < 300) {
 			correction = 0;
 		}
+		
 		Robot.driveTrain.setPower((speed - correction) * stopCorrection, (speed + correction) * stopCorrection);
+		SmartDashboard.putNumber("left encoder: ", Robot.sensors.getLeftEncoder());
 
 	}
 

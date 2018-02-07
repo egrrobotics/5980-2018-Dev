@@ -38,7 +38,12 @@ public class DriveTrain extends Subsystem {
 		}
 		//SmartDashboard.putNumber("speedType ", speedType);
 	}
-	
+	public double deadband(double i) {
+		if(Math.abs(i) < .06) {
+			i = 0;
+		}
+		return i;
+	}
 	public void setPower(double left, double right) {
 		
 		//System.out.println(right1.getSelectedSensorPosition(0));
@@ -47,10 +52,10 @@ public class DriveTrain extends Subsystem {
 		//System.out.println("DriveSubsystem.setPower");
 		//System.out.println(left);
 		//System.out.println(right);
-	
+		left = deadband(left);
+		right = deadband(right);
 		left1.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, left);
 		left2.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, left);
-		
 		right1.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, right);
 		right2.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, right);
 	}

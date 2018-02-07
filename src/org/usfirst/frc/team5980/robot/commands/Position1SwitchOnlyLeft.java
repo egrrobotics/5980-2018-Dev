@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Position1SwitchOnlyLeft extends CommandGroup {
 
     public Position1SwitchOnlyLeft() {
-    	addSequential(new DriveForwardAuto(.3, 100, 0, .000095));
+    	addSequential(new DriveForwardAuto(.3, 100, 0, .000125));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
