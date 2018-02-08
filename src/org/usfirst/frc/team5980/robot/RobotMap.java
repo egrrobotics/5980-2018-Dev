@@ -7,13 +7,43 @@ package org.usfirst.frc.team5980.robot;
  * floating around.
  */
 public class RobotMap {
-	// For example to map the left and right motors, you could define the
-	// following variables to use with your drivetrain subsystem.
-	// public static int leftMotor = 1;
-	// public static int rightMotor = 2;
+	
+	// ----- Drive Talons	
+	public static int leftDriveTrain1TalonNum = 3;
+	public static int leftDriveTrain2TalonNum = 4;	
+	public static int rightDriveTrain1TalonNum = 1;
+	public static int rightDriveTrain2TalonNum = 5;
+		
+	// ----- Other Talons
+	public static int turretTalonNum = 8;
+	public static int intake1TalonNum = 6;
+	public static int intake2TalonNum = 7;
+	public static int elevatorTalonNum = 9;
+	
+	// ----- Encoders	
+	public static boolean useTalonEncoders = true;
+	
+	public static int leftTalonEncoderNum = 3;
+	public static int rightTalonEncoderNum = 6;
+	
+	public static int leftEncoderChannelA = 0;
+	public static int leftEncoderChannelB = 1;
+	public static int rightEncoderChannelA = 8;
+	public static int rightEncoderChannelB = 9;
+	
+	public static int encoderCountsPerInch = 189;
+	
+	public static void configureJacob() {
 
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	// public static int rangefinderPort = 1;
-	// public static int rangefinderModule = 1;
+		RobotMap.useTalonEncoders = false;
+		
+		RobotMap.encoderCountsPerInch = 40;
+	}
+	
+	public static void configureNathan() {
+		
+		RobotMap.useTalonEncoders = true;	//uses DIO channels configured in leftEncoderChannelA/B and rightEncoderChannelA/B
+	
+		RobotMap.encoderCountsPerInch = 189;
+	}
 }
