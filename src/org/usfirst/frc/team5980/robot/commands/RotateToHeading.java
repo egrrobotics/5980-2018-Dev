@@ -34,9 +34,11 @@ public class RotateToHeading extends Command {
     	if (correction > 1) {
     		correction = 1;
     	}
+    	
     	if (correction < -1) {
     		correction = -1;
     	}
+    	
     	Robot.driveTrain.setPower(-speed * correction, speed * correction);
     	SmartDashboard.putNumber("Yaw: ", Robot.sensors.getYaw());
     }

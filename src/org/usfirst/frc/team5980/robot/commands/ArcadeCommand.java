@@ -56,7 +56,7 @@ public class ArcadeCommand extends Command {
 		double rightPower = clip(throttle - wheel);
 		
 		Robot.driveTrain.setPower(leftPower, rightPower);
-		
+		SmartDashboard.putNumber("yaw: ", Robot.sensors.getYaw());
 		
 		//if (leftPower != 0 || rightPower != 0) {
 		//	DecimalFormat df = new DecimalFormat("#.###");

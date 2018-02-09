@@ -25,7 +25,7 @@ public class Sensors extends Subsystem {
 	double lastLeftEncoder = 0;
 	double lastRightEncoder = 0;
 	boolean encoderInvert = false;
-	public double encoderCountsPerInch = 189; //189, 40 for Jacob
+	public double encoderCountsPerInch = 192; //189, 40 for Jacob
 	
 	public Sensors() {
 		try {
@@ -40,15 +40,17 @@ public class Sensors extends Subsystem {
 	public float getYaw() {
 		float yaw;
 		yaw = -(navX.getYaw() - yawOffset);
-		while(yaw > 180) {
-			yaw-=360;
+		while(yaw > 180.0f) {
+			yaw-=360.0f;
 		}
-		while (yaw < -180) {
-			yaw+=360;
+		while (yaw < -180.0f) {
+			yaw+=360.0f;
 		}
 		return yaw;
 	}
-	
+	public float getRawYaw() {
+		return navX.getYaw();
+	}
 	public float getRoll() {
 		float roll;
 		roll = navX.getRoll();

@@ -28,7 +28,8 @@ public class Robot extends IterativeRobot {
 	public static GameData gameData = new GameData();		
 	private Command autonomousCommand;
 	private SendableChooser<Command> chooser = new SendableChooser<>();
-	public static Sensors sensors = new Sensors();	
+	public static Sensors sensors = new Sensors();
+	
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -42,6 +43,8 @@ public class Robot extends IterativeRobot {
 		//this.updateSmartdashboard();
 		
 		sensors.resetSensors();
+		
+		
 	}
 
 	/**
@@ -75,7 +78,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData.pullGameData();
 		sensors.resetSensors();
-		autonomousCommand = new RotateToHeading(.3, 90);
+		autonomousCommand = new Position1SwitchOnlyRight();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
