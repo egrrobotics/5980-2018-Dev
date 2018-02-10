@@ -62,6 +62,6 @@ public class DriveTrain extends Subsystem {
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		this.setDefaultCommand(new ArcadeCommand());
+		//this.setDefaultCommand(new ArcadeCommand());
 	}
 }

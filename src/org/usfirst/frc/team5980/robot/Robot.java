@@ -75,7 +75,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData.pullGameData();
 		sensors.resetSensors();
-		autonomousCommand = new Position3SwitchOnlyLeft();
+		autonomousCommand = new Position1SwitchOnlyRight();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

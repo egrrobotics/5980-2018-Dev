@@ -40,11 +40,11 @@ public class Sensors extends Subsystem {
 	public float getYaw() {
 		float yaw;
 		yaw = -(navX.getYaw() - yawOffset);
-		while(yaw > 180) {
-			yaw-=360;
+		while(yaw > 180.0f) {
+			yaw-=360.0f;
 		}
-		while (yaw < -180) {
-			yaw+=360;
+		while (yaw < -180.0f) {
+			yaw+=360.0f;
 		}
 		return yaw;
 	}
