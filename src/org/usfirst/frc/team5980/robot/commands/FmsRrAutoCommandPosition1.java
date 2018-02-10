@@ -22,5 +22,12 @@ public class FmsRrAutoCommandPosition1 extends CommandGroup {
         addSequential(new ElevatorDropCommand(down));
         addSequential(new CubeGrabCommand(getit));
         */
+    	addSequential(new DriveForwardAuto(.3, 310, 0, .08));
+    	addSequential(new PauseAuto(2000));
+    	addSequential(new RotateToHeading(.3, -60));
+    	addSequential(new PauseAuto(500));
+    	addSequential(new DriveForwardAuto(.3, 15, 0, .08));
+    	
+    	
     }
 }

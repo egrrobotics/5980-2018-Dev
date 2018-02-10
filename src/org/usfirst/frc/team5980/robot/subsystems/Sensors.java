@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.SPI;
  */
 public class Sensors extends Subsystem {
 	
-	private boolean usingTalonEncoders = true;	   		// <-- move constant to RobotMap (robot setup class)
+	private boolean usingTalonEncoders = false;	   		// <-- move constant to RobotMap (robot setup class)
 	private Encoder leftEncoder = new Encoder(0, 1);	// <-- move constant to RobotMap (robot setup class)
 	private Encoder rightEncoder = new Encoder(8, 9);	// <-- move constant to RobotMap (robot setup class)
 
@@ -25,7 +25,7 @@ public class Sensors extends Subsystem {
 	double lastLeftEncoder = 0;
 	double lastRightEncoder = 0;
 	boolean encoderInvert = false;
-	public double encoderCountsPerInch = 192; //189, 40 for Jacob
+	public double encoderCountsPerInch = 40; //189, 40 for Jacob
 	
 	public Sensors() {
 		try {
@@ -40,17 +40,15 @@ public class Sensors extends Subsystem {
 	public float getYaw() {
 		float yaw;
 		yaw = -(navX.getYaw() - yawOffset);
-		while(yaw > 180.0f) {
-			yaw-=360.0f;
+		while(yaw > 180) {
+			yaw-=360;
 		}
-		while (yaw < -180.0f) {
-			yaw+=360.0f;
+		while (yaw < -180) {
+			yaw+=360;
 		}
 		return yaw;
 	}
-	public float getRawYaw() {
-		return navX.getYaw();
-	}
+	
 	public float getRoll() {
 		float roll;
 		roll = navX.getRoll();
