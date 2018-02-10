@@ -42,8 +42,7 @@ public class Sensors extends Subsystem {
 	}
 	
 	public float getYaw() {
-		SmartDashboard.putNumber("Sensors.navX.getYaw ", navX.getYaw());
-		SmartDashboard.putNumber("Sensors.yawOffset ", yawOffset);
+//		SmartDashboard.putNumber("Sensors.yawOffset ", yawOffset);
 		
 		float yaw;
 		yaw = -(navX.getYaw() - yawOffset);
@@ -54,7 +53,7 @@ public class Sensors extends Subsystem {
 			yaw+=360.0f;
 		}
 
-		SmartDashboard.putNumber("Sensors.getYaw() ", yaw);
+		//SmartDashboard.putNumber("Sensors.getYaw() ", yaw);
 
 		return yaw;
 	}
@@ -116,7 +115,7 @@ public class Sensors extends Subsystem {
 		
 		yawOffset = navX.getYaw();
 		
-		SmartDashboard.putNumber("Sensors.yawOffset ", yawOffset);
+		//SmartDashboard.putNumber("Sensors.yawOffset ", yawOffset);
 		System.out.println("Sensors Reset");
 	}
 	

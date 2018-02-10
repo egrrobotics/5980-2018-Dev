@@ -10,7 +10,7 @@ public class Position1SwitchOnlyRight extends CommandGroup {
     public Position1SwitchOnlyRight() {
     	//addSequential(new DriveForwardAuto(.3, 100, 0, .08));
     	//addSequential(new PauseAuto(300));
-    	addSequential(new RotateToHeading(.3, 90));
+    	addSequential(new RotateToHeading(.3, 30));
     	//addSequential(new PauseAuto(300));
     	//addSequential(new DriveForwardAuto(.3, 150, -90, .000125));
         // Add Commands here:
