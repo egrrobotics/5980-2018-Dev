@@ -41,11 +41,13 @@ public class RotateToHeading extends Command {
     	
     	Robot.driveTrain.setPower(-speed * correction, speed * correction);
     	SmartDashboard.putNumber("Yaw: ", Robot.sensors.getYaw());
+    	SmartDashboard.putNumber("Yaw - heading: ", Robot.sensors.getYaw() - heading);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	 return Math.abs(Robot.sensors.getYaw() - heading) < 2 || System.currentTimeMillis() > stopTime;    }
+    	 return Math.abs(Robot.sensors.getYaw() - heading) < 2 || System.currentTimeMillis() > stopTime;    
+    }
 
     // Called once after isFinished returns true
     protected void end() {

@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Position1SwitchOnlyRight extends CommandGroup {
 
     public Position1SwitchOnlyRight() {
-    	//addSequential(new DriveForwardAuto(.3, 190, 0, .000125));
+    	//addSequential(new DriveForwardAuto(.3, 100, 0, .08));
     	//addSequential(new PauseAuto(300));
-    	addSequential(new RotateToHeading(.2, 90));
+    	addSequential(new RotateToHeading(.3, 90));
     	//addSequential(new PauseAuto(300));
     	//addSequential(new DriveForwardAuto(.3, 150, -90, .000125));
         // Add Commands here:
