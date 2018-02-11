@@ -20,7 +20,7 @@ public class SetTurretPower extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.turretElevator.setTurretPower(power);
+    	Robot.turret.setTurretPower(power);
     	//stopTime = System.currentTimeMillis() + time;
     }
 

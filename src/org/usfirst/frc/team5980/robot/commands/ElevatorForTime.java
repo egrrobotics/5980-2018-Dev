@@ -7,35 +7,39 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SetIntakePower extends Command {
-	double power;
-    public SetIntakePower(double power) {
+public class ElevatorForTime extends Command {
+	long stopTime;
+	int runTime;
+
+    public ElevatorForTime(int runTime) {
+    	this.runTime = runTime;
         // Use requires() here to declare subsystem dependencies
-        //requires(chassis);
-    	this.power = power;
+        requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intake.setIntakePower(power);
+    	stopTime = System.currentTimeMillis() + runTime;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.elevator.setElevatorPower(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return (System.currentTimeMillis() > stopTime);
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.elevator.setElevatorPower(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.turretElevator.setIntakePower(0);
+    	Robot.elevator.setElevatorPower(0);
     }
 }

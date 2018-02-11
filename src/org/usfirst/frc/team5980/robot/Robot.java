@@ -24,6 +24,8 @@ public class Robot extends IterativeRobot {
 	
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final Turret turret = new Turret();
+	public static final Elevator elevator = new Elevator();
+	public static final Intake intake = new Intake();
 	public static OI oi;    
 	public static GameData gameData = new GameData();		
 	private Command autonomousCommand;
