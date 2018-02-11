@@ -164,9 +164,7 @@ public class Sensors extends Subsystem {
 		lastRightEncoder = currentRightEncoder;
 		leftEncoderMoving = Math.abs(lastLeftEncoder-this.getLeftEncoder()) < 3;
 		rightEncoderMoving = Math.abs(lastRightEncoder-this.getRightEncoder()) < 3;
-		
 		isMoving = leftEncoderMoving || rightEncoderMoving;
-		
 	}
 	
 	public double getXCoordinate() {

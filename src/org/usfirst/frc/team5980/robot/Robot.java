@@ -120,14 +120,12 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		
+		intake.setIntakePower(.4);
 		//this.updateSmartdashboard();
-		    	
 		//System.out.println("-------");
 		//System.out.println(right1.getSelectedSensorPosition(0));
 		//System.out.println(right1.getSelectedSensorVelocity(0));
 		//System.out.println("-------");
-		
 		//System.out.println("Robot.teleopPeriodic");
 		Scheduler.getInstance().run();
 	}
