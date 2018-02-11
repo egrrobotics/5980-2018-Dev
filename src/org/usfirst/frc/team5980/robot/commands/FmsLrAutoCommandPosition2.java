@@ -31,5 +31,6 @@ public class FmsLrAutoCommandPosition2 extends CommandGroup {
          addParallel(new ElevatorLift(woo)); 
          addSequential(new DropCubeCommand(bye cube));
          */
+    	addSequential(new TurretCommand(1000));
     }
 }
