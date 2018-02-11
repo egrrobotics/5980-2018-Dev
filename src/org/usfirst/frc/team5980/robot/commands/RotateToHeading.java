@@ -10,22 +10,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class RotateToHeading extends Command {
-	EGRPID rotatePID = new EGRPID(.02, 0, 0.046); //works for 90 degrees
+	EGRPID rotatePID = new EGRPID(.04, 0, 0.28); //change speed: .35 for 90, .6 for 30, inter/extrapolate from there
 	int heading;
 	double speed;
 	long stopTime;
 	
-    public RotateToHeading(double speed, int heading) {
+    public RotateToHeading(int heading) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
         this.heading = heading;
-        this.speed = speed;
+       
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	rotatePID.setTarget(heading);
     	stopTime = System.currentTimeMillis() + 3000;
+    	speed = (-.00416667*(Math.abs(heading-Robot.sensors.getYaw()))) + .725;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -63,7 +64,7 @@ public class RotateToHeading extends Command {
     		System.out.print("NOT MOVING ");
     	System.out.print(Robot.sensors.getYaw());
     	*/
-    	boolean headingReached = Math.abs(Robot.sensors.getYaw() - heading) < 2;
+    	boolean headingReached = Math.abs(Robot.sensors.getYaw() - heading) < 1;
     	boolean isDone = headingReached && Robot.sensors.isMoving == false;
        /* 
     	if (isDone)

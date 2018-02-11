@@ -52,8 +52,8 @@ public class DriveTrain extends Subsystem {
 		
 		//System.out.println(right1.getSelectedSensorPosition(0));
 		//System.out.println(right1.getSelectedSensorVelocity(0));
-		SmartDashboard.putNumber("PowerLEFT", left);
-		SmartDashboard.putNumber("PowerRIGHT", right);
+		//SmartDashboard.putNumber("PowerLEFT", left);
+		//SmartDashboard.putNumber("PowerRIGHT", right);
 		
 		//System.out.println("DriveSubsystem.setPower");
 		//System.out.println(left);

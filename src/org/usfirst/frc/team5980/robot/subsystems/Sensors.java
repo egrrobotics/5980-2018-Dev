@@ -28,6 +28,9 @@ public class Sensors extends Subsystem {
 	double lastRightEncoder = 0;
 	boolean encoderInvert = false;
 	public double encoderCountsPerInch = RobotMap.encoderCountsPerInch;
+	public boolean isMoving = false;
+	public boolean leftEncoderMoving = false;
+	public boolean rightEncoderMoving = false;
 	
 	public Sensors() {
 		try {
@@ -38,6 +41,8 @@ public class Sensors extends Subsystem {
 		}
 		this.resetSensors();
 	}
+	
+
 	
 	public float getYaw() {
 		float yaw;
@@ -157,6 +162,11 @@ public class Sensors extends Subsystem {
 		YCoordinate += changeInY;
 		lastLeftEncoder = currentLeftEncoder;
 		lastRightEncoder = currentRightEncoder;
+		leftEncoderMoving = Math.abs(lastLeftEncoder-this.getLeftEncoder()) < 3;
+		rightEncoderMoving = Math.abs(lastRightEncoder-this.getRightEncoder()) < 3;
+		
+		isMoving = leftEncoderMoving || rightEncoderMoving;
+		
 	}
 	
 	public double getXCoordinate() {

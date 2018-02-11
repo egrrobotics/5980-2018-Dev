@@ -56,7 +56,7 @@ public class ArcadeCommand extends Command {
 			}
 		}
 		Robot.driveTrain.setPower(leftPower, rightPower);
-		SmartDashboard.putNumber("Wheel", wheel);
+		//SmartDashboard.putNumber("Wheel", wheel);
 		
 		
 		

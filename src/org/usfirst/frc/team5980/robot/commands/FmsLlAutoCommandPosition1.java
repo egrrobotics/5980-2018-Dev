@@ -20,9 +20,9 @@ public class FmsLlAutoCommandPosition1 extends CommandGroup {
     	addSequential(new PauseAuto(1000));
     	addSequential(new DriveForwardAuto(.3, 50, 0, .000125));
     	addSequential(new PauseAuto(2000));
-    	addSequential(new RotateToHeading(.2, -15));
+    	addSequential(new RotateToHeading(-15));
     	addSequential(new DriveForwardAuto(.3, 50, -15, .000125));
-    	addSequential(new RotateToHeading(.2, 0));
+    	addSequential(new RotateToHeading(0));
     	addSequential(new PauseAuto(500));
     	addSequential(new DriveForwardAuto(.3, 40, 0, .000125));
     }
