@@ -12,7 +12,7 @@ public class Turret extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	TalonSRX turret = new TalonSRX(8);
+	TalonSRX turret = new TalonSRX(3);
 	
 	
 	public void setTurretPower(double power) {

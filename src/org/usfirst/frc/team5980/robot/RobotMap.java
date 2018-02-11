@@ -9,16 +9,16 @@ package org.usfirst.frc.team5980.robot;
 public class RobotMap {
 	
 	// ----- Drive Talons	
-	public static int leftDriveTrain1TalonNum = 3;
-	public static int leftDriveTrain2TalonNum = 4;	
-	public static int rightDriveTrain1TalonNum = 1;
+	public static int leftDriveTrain1TalonNum = 6;
+	public static int leftDriveTrain2TalonNum = 7;	
+	public static int rightDriveTrain1TalonNum = 4;
 	public static int rightDriveTrain2TalonNum = 5;
 		
 	// ----- Other Talons
-	public static int turretTalonNum = 8;
-	public static int intake1TalonNum = 6;
-	public static int intake2TalonNum = 7;
-	public static int elevatorTalonNum = 9;
+	public static int turretTalonNum = 3;
+	public static int intake1TalonNum = 10;
+	public static int intake2TalonNum = 11;
+	public static int elevatorTalonNum = 12;
 	
 	// ----- Encoders	
 	public static boolean useTalonEncoders = true;
@@ -47,7 +47,6 @@ public class RobotMap {
 	}
 	
 	public static void configureNathan() {
-		
 		RobotMap.useTalonEncoders = true;	//uses DIO channels configured in leftEncoderChannelA/B and rightEncoderChannelA/B
 	
 		RobotMap.encoderCountsPerInch = 189;
@@ -57,5 +56,6 @@ public class RobotMap {
 		
 		RobotMap.leftDriveTrain1TalonNum = 6;
 		RobotMap.leftDriveTrain2TalonNum = 7;
+		System.out.println(rightDriveTrain1TalonNum);
 	}
 }

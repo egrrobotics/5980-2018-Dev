@@ -33,8 +33,6 @@ public class OI {
 	}
 	
 	private void driverSetup() {
-		XboxTrigger testButton = new XboxTrigger(driver, XboxTrigger.LB);
-		testButton.whileActive(null);
 	}
 	
 	private void operatorSetup() {
@@ -47,17 +45,12 @@ public class OI {
 		XboxTrigger buttonB = new XboxTrigger(operator, XboxTrigger.B); //button B on xbox
 		buttonB.whileActive(new SetIntakePower(1));		//sets intake to take in box	
 		
-		//XboxTrigger buttonX = new XboxTrigger(driver, XboxTrigger.A); 
-		//buttonX.whileActive(new SetTurretPower(1));
+		XboxTrigger buttonLB = new XboxTrigger(driver, XboxTrigger.LB); 
+		buttonLB.whileActive(new SetTurretPower(1));
 		
-		//XboxTrigger buttonA = new XboxTrigger(driver, XboxTrigger.A); 
-		//buttonA.whileActive(new SetTurretPower(-1));
-		
-		
-		
-		//XboxTrigger buttonY = new XboxTrigger(operator, XboxTrigger.X); 
-		//buttonX.whileActive(new SetIntakePower(-1));
-		
+		XboxTrigger buttonRB = new XboxTrigger(driver, XboxTrigger.RB); 
+		buttonRB.whileActive(new SetTurretPower(-1));
+	
 		
 	}
 	

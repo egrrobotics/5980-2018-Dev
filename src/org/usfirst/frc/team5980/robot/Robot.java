@@ -42,7 +42,7 @@ public class Robot extends IterativeRobot {
 		Robot.gameData.pullGameData();
 		//this.setupSmartdashboard();	
 		//this.updateSmartdashboard();
-		
+		RobotMap.configureNathan();
 		sensors.resetSensors();
 	}
 
@@ -77,7 +77,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData.pullGameData();
 		sensors.resetSensors();
-		autonomousCommand = new Position1SwitchOnlyRight();
+		autonomousCommand = new Position3SwitchOnlyRight();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
