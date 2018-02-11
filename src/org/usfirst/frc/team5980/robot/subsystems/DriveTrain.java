@@ -1,7 +1,10 @@
 package org.usfirst.frc.team5980.robot.subsystems;
 
+import org.usfirst.frc.team5980.robot.RobotMap;
 import org.usfirst.frc.team5980.robot.commands.ArcadeCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /**
@@ -16,11 +19,12 @@ public class DriveTrain extends Subsystem {
 	public boolean type;
 	
 	public DriveTrain() {
-		right1 = new TalonSRX(1);
-		right2 = new TalonSRX(5);
+		System.out.println("drivetrainInit");
+		right1 = new TalonSRX(RobotMap.rightDriveTrain1TalonNum);
+		right2 = new TalonSRX(RobotMap.rightDriveTrain2TalonNum);
 		
-		left1 = new TalonSRX(3);
-		left2 = new TalonSRX(4);
+		left1 = new TalonSRX(RobotMap.leftDriveTrain1TalonNum);
+		left2 = new TalonSRX(RobotMap.leftDriveTrain2TalonNum);
 		
 		right1.setInverted(true);//ESSENTIAL! One side will have to be the opposite direction to go the same direction
 		right2.setInverted(true);
@@ -48,6 +52,8 @@ public class DriveTrain extends Subsystem {
 		
 		//System.out.println(right1.getSelectedSensorPosition(0));
 		//System.out.println(right1.getSelectedSensorVelocity(0));
+		SmartDashboard.putNumber("PowerLEFT", left);
+		SmartDashboard.putNumber("PowerRIGHT", right);
 		
 		//System.out.println("DriveSubsystem.setPower");
 		//System.out.println(left);
@@ -62,6 +68,6 @@ public class DriveTrain extends Subsystem {
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		//this.setDefaultCommand(new ArcadeCommand());
+		this.setDefaultCommand(new ArcadeCommand());
 	}
 }

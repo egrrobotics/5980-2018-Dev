@@ -22,7 +22,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
  */
 public class Robot extends IterativeRobot {	
 	
-	public static final DriveTrain driveTrain = new DriveTrain();
+	public static DriveTrain driveTrain;
 	public static final TurretElevator turretElevator = new TurretElevator();
 	public static OI oi;    
 	public static GameData gameData = new GameData();		
@@ -37,6 +37,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {		
 		oi = new OI();
+		RobotMap.configureNathan();
+		Robot.driveTrain = new DriveTrain();
 		Robot.gameData.pullGameData();
 		//this.setupSmartdashboard();	
 		//this.updateSmartdashboard();
@@ -74,8 +76,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		Robot.gameData.pullGameData();
-		sensors.resetSensors();
-		autonomousCommand = new Position1SwitchOnlyRight();
+		autonomousCommand = new Position3SwitchOnlyRight();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -103,7 +104,6 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		TalonSRX right1 = new TalonSRX(3);
 		right1.setSelectedSensorPosition(0, 0, 0);
-		
 		//System.out.println("Robot.teleopInit");
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
@@ -111,6 +111,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		Robot.sensors.resetYaw();
 	}
 
 	/**
@@ -118,9 +119,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		SmartDashboard.putNumber("yaw:", Robot.sensors.getYaw());
+		this.updateSmartdashboard();
 		
-		//this.updateSmartdashboard();
-		    	
 		//System.out.println("-------");
 		//System.out.println(right1.getSelectedSensorPosition(0));
 		//System.out.println(right1.getSelectedSensorVelocity(0));

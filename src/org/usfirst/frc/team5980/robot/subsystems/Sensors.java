@@ -1,12 +1,11 @@
 package org.usfirst.frc.team5980.robot.subsystems;
 
-import org.usfirst.frc.team5980.robot.Robot;
+import org.usfirst.frc.team5980.robot.RobotMap;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI;
 
 /**
@@ -14,7 +13,7 @@ import edu.wpi.first.wpilibj.SPI;
  */
 public class Sensors extends Subsystem {
 	
-	private boolean usingTalonEncoders = false;	   		// <-- move constant to RobotMap (robot setup class)
+	private boolean usingTalonEncoders = true;	   		// <-- move constant to RobotMap (robot setup class)
 	private Encoder leftEncoder = new Encoder(0, 1);	// <-- move constant to RobotMap (robot setup class)
 	private Encoder rightEncoder = new Encoder(8, 9);	// <-- move constant to RobotMap (robot setup class)
 
@@ -28,8 +27,7 @@ public class Sensors extends Subsystem {
 	double lastLeftEncoder = 0;
 	double lastRightEncoder = 0;
 	boolean encoderInvert = false;
-	public double encoderCountsPerInch = 40; //189, 40 for Jacob
-	public boolean isMoving = false;
+	public double encoderCountsPerInch = RobotMap.encoderCountsPerInch;
 	
 	public Sensors() {
 		try {
@@ -42,8 +40,6 @@ public class Sensors extends Subsystem {
 	}
 	
 	public float getYaw() {
-//		SmartDashboard.putNumber("Sensors.yawOffset ", yawOffset);
-		
 		float yaw;
 		yaw = -(navX.getYaw() - yawOffset);
 		while(yaw > 180.0f) {
@@ -52,9 +48,6 @@ public class Sensors extends Subsystem {
 		while (yaw < -180.0f) {
 			yaw+=360.0f;
 		}
-
-		//SmartDashboard.putNumber("Sensors.getYaw() ", yaw);
-
 		return yaw;
 	}
 	
@@ -114,13 +107,11 @@ public class Sensors extends Subsystem {
 		lastRightEncoder = 0;
 		
 		yawOffset = navX.getYaw();
-		
-		//SmartDashboard.putNumber("Sensors.yawOffset ", yawOffset);
-		System.out.println("Sensors Reset");
 	}
 	
 	public void resetYaw() {
 		navX.zeroYaw();
+		yawOffset = navX.getYaw();
 	}
 	
 	public void resetLeftEncoder() {
@@ -164,16 +155,6 @@ public class Sensors extends Subsystem {
 		double changeInY = encoderDistance * Math.sin(heading);
 		XCoordinate += changeInX;
 		YCoordinate += changeInY;
-		
-		boolean leftEncoderMoving = Math.abs(lastLeftEncoder - currentLeftEncoder) > 3;			//3 tick variance is allowable and indicates no motion
-		boolean rightEncoderMoving = Math.abs(lastRightEncoder - currentRightEncoder) > 3;		//3 tick variance is allowable and indicates no motion
-		
-		isMoving = leftEncoderMoving || rightEncoderMoving;
-		
-		//SmartDashboard.putNumber("Sensors.leftEncoder", currentLeftEncoder);
-		//SmartDashboard.putNumber("Sensors.rightEncoder", currentRightEncoder);
-		//SmartDashboard.putBoolean("Sensors.isMoving", isMoving);
-		
 		lastLeftEncoder = currentLeftEncoder;
 		lastRightEncoder = currentRightEncoder;
 	}

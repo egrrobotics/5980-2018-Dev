@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team5980.robot.commands.SetIntakePower;
+import org.usfirst.frc.team5980.robot.commands.SetTurretPower;
 import org.usfirst.frc.team5980.robot.triggers.*;
 
 /**
@@ -44,7 +45,20 @@ public class OI {
 		buttonA.whileActive(new SetIntakePower(-1));
 
 		XboxTrigger buttonB = new XboxTrigger(operator, XboxTrigger.B); //button B on xbox
-		buttonB.whileActive(new SetIntakePower(1));		//sets intake to take in box		
+		buttonB.whileActive(new SetIntakePower(1));		//sets intake to take in box	
+		
+		//XboxTrigger buttonX = new XboxTrigger(driver, XboxTrigger.A); 
+		//buttonX.whileActive(new SetTurretPower(1));
+		
+		//XboxTrigger buttonA = new XboxTrigger(driver, XboxTrigger.A); 
+		//buttonA.whileActive(new SetTurretPower(-1));
+		
+		
+		
+		//XboxTrigger buttonY = new XboxTrigger(operator, XboxTrigger.X); 
+		//buttonX.whileActive(new SetIntakePower(-1));
+		
+		
 	}
 	
 			

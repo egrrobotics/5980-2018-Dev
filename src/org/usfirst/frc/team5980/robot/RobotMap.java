@@ -31,13 +31,19 @@ public class RobotMap {
 	public static int rightEncoderChannelA = 8;
 	public static int rightEncoderChannelB = 9;
 	
-	public static int encoderCountsPerInch = 189;
+	public static double encoderCountsPerInch = 189;
 	
 	public static void configureJacob() {
-
+		System.out.println("Jacob");
 		RobotMap.useTalonEncoders = false;
 		
-		RobotMap.encoderCountsPerInch = 40;
+		RobotMap.encoderCountsPerInch = 29.85;
+		
+		RobotMap.rightDriveTrain1TalonNum = 1;
+		RobotMap.rightDriveTrain2TalonNum = 5;
+		
+		RobotMap.leftDriveTrain1TalonNum = 3;
+		RobotMap.leftDriveTrain2TalonNum = 4;
 	}
 	
 	public static void configureNathan() {
@@ -45,5 +51,11 @@ public class RobotMap {
 		RobotMap.useTalonEncoders = true;	//uses DIO channels configured in leftEncoderChannelA/B and rightEncoderChannelA/B
 	
 		RobotMap.encoderCountsPerInch = 189;
+		
+		RobotMap.rightDriveTrain1TalonNum = 4;
+		RobotMap.rightDriveTrain2TalonNum = 5;
+		
+		RobotMap.leftDriveTrain1TalonNum = 6;
+		RobotMap.leftDriveTrain2TalonNum = 7;
 	}
 }
