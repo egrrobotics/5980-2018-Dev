@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TurretForTime extends Command {
+public class TurretForTimeRight extends Command {
 	long stopTime; 
 	int runTime;
 
-    public TurretForTime(int runTime) {
+    public TurretForTimeRight(int runTime) {
     	this.runTime = runTime;
         // Use requires() here to declare subsystem dependencies
         requires(Robot.turret);
@@ -24,7 +24,7 @@ public class TurretForTime extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.turret.setTurretPower(1);
+    	Robot.turret.setTurretPower(-1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
