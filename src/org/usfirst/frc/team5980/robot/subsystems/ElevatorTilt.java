@@ -8,16 +8,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Elevator extends Subsystem {
+public class ElevatorTilt extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	TalonSRX elevator = new TalonSRX(10);
+	TalonSRX actuator = new TalonSRX(8);
 	
-	public void setElevatorPower(double power) {
-		elevator.set(ControlMode.PercentOutput, power);
+	public void setPower(double power) {
+		actuator.set(ControlMode.PercentOutput, power);
 	}
-
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

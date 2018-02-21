@@ -34,7 +34,7 @@ public class GameData {
 		
 		System.out.println("--> Read game data: '" + gameData + "'");
 
-		if (gameData.charAt(0) == 'L')
+		if (gameData.charAt(0) == 'L') 
 			this.NearSwitch = TeamSide.LEFT;
 		else 
 			this.NearSwitch = TeamSide.RIGHT;

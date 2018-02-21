@@ -1,9 +1,13 @@
 package org.usfirst.frc.team5980.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc.team5980.robot.commands.SetActuatorPower;
+import org.usfirst.frc.team5980.robot.commands.SetElevatorPower;
 import org.usfirst.frc.team5980.robot.commands.SetIntakePower;
 import org.usfirst.frc.team5980.robot.commands.SetTurretPower;
 import org.usfirst.frc.team5980.robot.triggers.*;
@@ -14,8 +18,8 @@ import org.usfirst.frc.team5980.robot.triggers.*;
  */
 public class OI {
 	
-	public XboxController driver = new XboxController(0);
-	public XboxController operator = new XboxController(1);
+	public Joystick driver = new Joystick(0);
+	public Joystick operator = new Joystick(1);
 	
 	public OI() {
 		if (driver.getButtonCount() > 0)
@@ -33,25 +37,38 @@ public class OI {
 	}
 	
 	private void driverSetup() {
+		
+		Button buttonLB = new JoystickButton(driver, XboxTrigger.LB); 
+		buttonLB.whileActive(new SetTurretPower(1));
+		
+		Button buttonRB = new JoystickButton(driver, XboxTrigger.RB); 
+		buttonRB.whileActive(new SetTurretPower(-1));
+	
 	}
 	
 	private void operatorSetup() {
 		//XboxTrigger testButton = new XboxTrigger(operator, XboxTrigger.LB);
 		//testButton.whileActive(null);
 				
-		XboxTrigger buttonA = new XboxTrigger(operator, XboxTrigger.A); //button A on xbox
-		buttonA.whileActive(new SetIntakePower(-1));
+		Button buttonA = new JoystickButton(operator, XboxTrigger.A); //button A on xbox
+		buttonA.whileActive(new SetIntakePower(-.8));
 
-		XboxTrigger buttonB = new XboxTrigger(operator, XboxTrigger.B); //button B on xbox
-		buttonB.whileActive(new SetIntakePower(1));		//sets intake to take in box	
+		Button buttonB = new JoystickButton(operator, XboxTrigger.B); //button B on xbox
+		buttonB.whileActive(new SetIntakePower(.8));		//sets intake to push out? box	
 		
-		XboxTrigger buttonLB = new XboxTrigger(driver, XboxTrigger.LB); 
-		buttonLB.whileActive(new SetTurretPower(1));
+		Button buttonX = new JoystickButton(operator, XboxTrigger.X);
+		buttonX.whileActive(new SetActuatorPower(.3));
 		
-		XboxTrigger buttonRB = new XboxTrigger(driver, XboxTrigger.RB); 
-		buttonRB.whileActive(new SetTurretPower(-1));
+		Button buttonY = new JoystickButton(operator, XboxTrigger.Y);
+		buttonY.whileActive(new SetActuatorPower(-.3));
+		
+		Button buttonLB = new JoystickButton(operator, XboxTrigger.LB);
+		buttonLB.whileActive(new SetElevatorPower(.3));
+		
+		Button buttonRB = new JoystickButton(operator, XboxTrigger.RB);
+		buttonRB.whileActive(new SetElevatorPower(-.3)); 
+		
 	
-		
 	}
 	
 			

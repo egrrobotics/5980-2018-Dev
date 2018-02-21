@@ -16,9 +16,9 @@ public class RobotMap {
 		
 	// ----- Other Talons
 	public static int turretTalonNum = 3;
-	public static int intake1TalonNum = 10;
-	public static int intake2TalonNum = 11;
-	public static int elevatorTalonNum = 12;
+	public static int intake1TalonNum = 1;
+	public static int intake2TalonNum = 2;
+	public static int elevatorTalonNum = 10;
 	
 	// ----- Encoders	
 	public static boolean useTalonEncoders = true;

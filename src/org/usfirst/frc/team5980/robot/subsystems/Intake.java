@@ -12,8 +12,8 @@ public class Intake extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	TalonSRX intake1 = new TalonSRX(6);
-	TalonSRX intake2 = new TalonSRX(7);
+	TalonSRX intake1 = new TalonSRX(1);
+	TalonSRX intake2 = new TalonSRX(2);
 	
 	public void setIntakePower(double power) {
 		intake1.set(ControlMode.PercentOutput, -power);

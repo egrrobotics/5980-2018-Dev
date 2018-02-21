@@ -26,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static final Turret turret = new Turret();
 	public static final Elevator elevator = new Elevator();
 	public static final Intake intake = new Intake();
+	public static final ElevatorTilt actuator = new ElevatorTilt();
 	public static OI oi;    
 	public static GameData gameData = new GameData();		
 	private Command autonomousCommand;
@@ -120,7 +121,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		intake.setIntakePower(.4);
+		//intake.setIntakePower(1);
 		//this.updateSmartdashboard();
 		//System.out.println("-------");
 		//System.out.println(right1.getSelectedSensorPosition(0));
