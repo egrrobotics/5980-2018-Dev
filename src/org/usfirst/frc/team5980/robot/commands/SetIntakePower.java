@@ -11,7 +11,7 @@ public class SetIntakePower extends Command {
 	double power;
     public SetIntakePower(double power) {
         // Use requires() here to declare subsystem dependencies
-        //requires(chassis);
+        requires(Robot.intake);
     	this.power = power;
     }
 
