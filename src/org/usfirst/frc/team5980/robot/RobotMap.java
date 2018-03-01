@@ -23,8 +23,8 @@ public class RobotMap {
 	// ----- Encoders	
 	public static boolean useTalonEncoders = true;
 	
-	public static int leftTalonEncoderNum = 3;
-	public static int rightTalonEncoderNum = 6;
+	public static int leftTalonEncoderNum = 6;
+	public static int rightTalonEncoderNum = 4;
 	
 	public static int leftEncoderChannelA = 0;
 	public static int leftEncoderChannelB = 1;
@@ -35,15 +35,15 @@ public class RobotMap {
 	
 	public static void configureJacob() {
 		System.out.println("Jacob");
-		RobotMap.useTalonEncoders = false;
+		RobotMap.useTalonEncoders = true;
 		
-		RobotMap.encoderCountsPerInch = 29.85;
+		RobotMap.encoderCountsPerInch = 189;
 		
-		RobotMap.rightDriveTrain1TalonNum = 1;
+		RobotMap.rightDriveTrain1TalonNum = 4;
 		RobotMap.rightDriveTrain2TalonNum = 5;
 		
-		RobotMap.leftDriveTrain1TalonNum = 3;
-		RobotMap.leftDriveTrain2TalonNum = 4;
+		RobotMap.leftDriveTrain1TalonNum = 6;
+		RobotMap.leftDriveTrain2TalonNum = 7;
 	}
 	
 	public static void configureNathan() {
@@ -56,6 +56,5 @@ public class RobotMap {
 		
 		RobotMap.leftDriveTrain1TalonNum = 6;
 		RobotMap.leftDriveTrain2TalonNum = 7;
-		System.out.println(rightDriveTrain1TalonNum);
 	}
 }

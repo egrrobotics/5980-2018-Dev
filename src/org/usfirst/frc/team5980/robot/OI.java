@@ -50,23 +50,23 @@ public class OI {
 		//XboxTrigger testButton = new XboxTrigger(operator, XboxTrigger.LB);
 		//testButton.whileActive(null);
 				
-		Button buttonA = new JoystickButton(operator, XboxTrigger.A); //button A on xbox
-		buttonA.whileActive(new SetIntakePower(-.8));
+		Button buttonA = new JoystickButton(operator, 1); //button A on xbox
+		buttonA.whileActive(new SetIntakePower(-1));
 
-		Button buttonB = new JoystickButton(operator, XboxTrigger.B); //button B on xbox
-		buttonB.whileActive(new SetIntakePower(.8));		//sets intake to push out? box	
+		Button buttonB = new JoystickButton(operator, 2); //button B on xbox
+		buttonB.whileActive(new SetIntakePower(1));		//sets intake to push out? box	
 		
-		Button buttonX = new JoystickButton(operator, XboxTrigger.X);
+		Button buttonX = new JoystickButton(operator, 3);
 		buttonX.whileActive(new SetActuatorPower(.3));
 		
-		Button buttonY = new JoystickButton(operator, XboxTrigger.Y);
+		Button buttonY = new JoystickButton(operator, 4);
 		buttonY.whileActive(new SetActuatorPower(-.3));
 		
-		Button buttonLB = new JoystickButton(operator, XboxTrigger.LB);
-		buttonLB.whileActive(new SetElevatorPower(.3));
+		Button buttonLB = new JoystickButton(operator, 5);
+		buttonLB.whileActive(new SetElevatorPower(1));
 		
-		Button buttonRB = new JoystickButton(operator, XboxTrigger.RB);
-		buttonRB.whileActive(new SetElevatorPower(-.3)); 
+		Button buttonRB = new JoystickButton(operator, 6);
+		buttonRB.whileActive(new SetElevatorPower(-1)); 
 		
 	
 	}
