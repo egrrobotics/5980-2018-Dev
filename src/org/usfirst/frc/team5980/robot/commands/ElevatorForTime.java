@@ -10,9 +10,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ElevatorForTime extends Command {
 	long stopTime;
 	int runTime;
-
-    public ElevatorForTime(int runTime) {
+	double power; 
+	
+    public ElevatorForTime(int runTime, double power) {
     	this.runTime = runTime;
+    	this.power = power;
         // Use requires() here to declare subsystem dependencies
         requires(Robot.elevator);
     }
@@ -24,7 +26,7 @@ public class ElevatorForTime extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.setElevatorPower(1);
+    	Robot.elevator.setElevatorPower(power);
     }
 
     // Make this return true when this Command no longer needs to run execute()

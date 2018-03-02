@@ -10,7 +10,7 @@ public class Position3SwitchOnlyRight extends CommandGroup {
     public Position3SwitchOnlyRight() {
     	System.out.println("3switchonlyright");
     	addSequential(new DriveForwardAuto(.3, 130, 0, .08));
-    	addSequential(new TurretForTimeLeft(900));
+    	addSequential(new TurretForTime(900, .5));
     	addSequential(new RotateToHeading(90));
     	addSequential(new PauseAuto(1000));
     	addSequential(new DriveForwardAuto(.2, 34, 90, .08));

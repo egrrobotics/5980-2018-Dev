@@ -7,29 +7,30 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TurretForTimeRight extends Command {
-	long stopTime; 
-	int runTime;
-
-    public TurretForTimeRight(int runTime) {
-    	this.runTime = runTime;
+public class TurretForTime extends Command {
+	long stopTime;
+	double power;
+	long time;
+    public TurretForTime(long stopTime, double power) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.turret);
+        this.stopTime = stopTime;
+        this.power = power;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	stopTime = System.currentTimeMillis() + runTime;
+    	time = System.currentTimeMillis() + stopTime;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.turret.setTurretPower(-1);
+    	Robot.turret.setTurretPower(power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return (System.currentTimeMillis() > stopTime);
+        return System.currentTimeMillis() > time;
     }
 
     // Called once after isFinished returns true
