@@ -17,7 +17,7 @@ public class GameData {
 	
 	public void pullGameData() {	
 		String gameData = "";
-		int loopLimit = 1000;
+		int loopLimit = 5000;
 		
 		while (gameData.length() == 0 && loopLimit-- > 0) {
 			gameData = DriverStation.getInstance().getGameSpecificMessage();	

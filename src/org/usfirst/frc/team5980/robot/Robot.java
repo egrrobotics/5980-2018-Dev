@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static final ElevatorTilt actuator = new ElevatorTilt();
 	public static OI oi;    
 	public static GameData gameData = new GameData();		
+	public static AutonSwitches autonSwitches = new AutonSwitches();
 	private Command autonomousCommand;
 	private SendableChooser<Command> chooser = new SendableChooser<>();
 	public static Sensors sensors = new Sensors();	
@@ -128,6 +129,7 @@ public class Robot extends IterativeRobot {
 		//System.out.println(right1.getSelectedSensorVelocity(0));
 		//System.out.println("-------");
 		//System.out.println("Robot.teleopPeriodic");
+		SmartDashboard.putBoolean("Dip: ", Robot.sensors.getDIPSwitch()); 
 		Scheduler.getInstance().run();
 	}
 

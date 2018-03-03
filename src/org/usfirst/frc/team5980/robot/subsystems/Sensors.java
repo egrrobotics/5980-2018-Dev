@@ -3,6 +3,8 @@ package org.usfirst.frc.team5980.robot.subsystems;
 import org.usfirst.frc.team5980.robot.RobotMap;
 
 import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -14,8 +16,8 @@ import edu.wpi.first.wpilibj.SPI;
 public class Sensors extends Subsystem {
 	
 	private boolean usingTalonEncoders = true;	   		// <-- move constant to RobotMap (robot setup class)
-	private Encoder leftEncoder = new Encoder(0, 1);	// <-- move constant to RobotMap (robot setup class)
-	private Encoder rightEncoder = new Encoder(8, 9);	// <-- move constant to RobotMap (robot setup class)
+	private Encoder leftEncoder = null;	// <-- move constant to RobotMap (robot setup class)
+	private Encoder rightEncoder = null;	// <-- move constant to RobotMap (robot setup class)
 
 	//static Potentiometer pot = new AnalogPotentiometer(0, 360, 10); //Channel number for Analog input, scale factor 360 being the great, offset to add after scaling to prevent breakage (10 to 30 range) 
 	static AHRS navX;
@@ -32,6 +34,7 @@ public class Sensors extends Subsystem {
 	public boolean leftEncoderMoving = false;
 	public boolean rightEncoderMoving = false;
 	
+	
 	public Sensors() {
 		try {
 			navX = new AHRS(SPI.Port.kMXP);
@@ -41,8 +44,6 @@ public class Sensors extends Subsystem {
 		}
 		this.resetSensors();
 	}
-	
-
 	
 	public float getYaw() {
 		float yaw;
@@ -126,28 +127,6 @@ public class Sensors extends Subsystem {
 	public void resetRightEncoder() {
 		rightEncoder.reset();
 	}
-	
-	/*
-	public double getPot() {
-		return pot.get();
-	}
-	*/
-	
-	/* public ConfigFwdLimitSwitchNormallyOpen() {
-		if(btn4) {
-			customMotorDescrip.ConfigFwdLimitSwitchNormallyOpen(true);
-		}
-		else if(btn2) {
-			customMotorDescrip.ConfigFwdLimitSwitchNormallyOpen(false); 
-		}
-		if(btn1) {
-			customMotorDescrip.ConfigRevLimitSwitchNormallyOpen(true);
-		}
-		elseif(btn3) {
-			customMotorDescrip.ConfigRevLimitSwitchNormallyOpen(false);
-		}
-	}
-	*/
 	
 	public void updatePosition() {
 		double currentLeftEncoder = getLeftEncoder();
