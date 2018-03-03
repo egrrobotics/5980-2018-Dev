@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5980.robot.commands.*;
 import org.usfirst.frc.team5980.robot.subsystems.*;
 import org.usfirst.frc.team5980.robot.utils.GameData;
+import org.usfirst.frc.team5980.robot.utils.GetAuton;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -30,6 +31,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;    
 	public static GameData gameData = new GameData();		
 	public static AutonSwitches autonSwitches = new AutonSwitches();
+	public static GetAuton autonChooser = new GetAuton();
 	private Command autonomousCommand;
 	private SendableChooser<Command> chooser = new SendableChooser<>();
 	public static Sensors sensors = new Sensors();	
@@ -79,8 +81,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData.pullGameData();
 		sensors.resetSensors();
-		autonomousCommand = new Position3SwitchOnlyRight();
-
+		autonomousCommand = autonChooser.getAutonCommand();
+		SmartDashboard.putString("Auto Command: ", autonomousCommand.getName());
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
