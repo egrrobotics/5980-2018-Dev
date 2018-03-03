@@ -14,9 +14,11 @@ import org.usfirst.frc.team5980.robot.commands.Position3DropRightSwitch;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class GetAuton {
+	
 	Command autonCommand;
+	
 	public Command getAutonCommand() {
-		autonCommand = new DriveForwardAuto(.5, 120, 0); //backup: crosses baseline if can't interpret switches and GameData
+		
 		if(Robot.autonSwitches.getPosition() == 1) {
 			this.DropLeftSwitch();
 			this.DropLeftScale();
@@ -33,6 +35,8 @@ public class GetAuton {
 			this.DropRightScale();
 			this.DropLeftSwitch();
 		}
+		if(autonCommand == null)
+			autonCommand = new DriveForwardAuto(.5, 120, 0); //backup: crosses baseline if can't interpret switches and GameData
 		return autonCommand;
 	}
 	
@@ -68,7 +72,7 @@ public class GetAuton {
 	}
 	
 	public void DropRightSwitch() {
-		if(autonCommand != null) 
+		if(autonCommand != null)
 			return;
 		if(Robot.autonSwitches.getSwitchValues()[5] == false)
 			return;

@@ -12,6 +12,12 @@ public class AutonSwitches extends Subsystem {
     // here. Call these from Commands.
 	DigitalInput[] switches = new DigitalInput[8];
 	
+	public AutonSwitches() {
+		for(int i = 0; i < switches.length; i++) {
+			switches[i] = new DigitalInput(i);
+		}
+	}
+	
 	public boolean[] getSwitchValues() {
 		boolean[] values = new boolean[8];
 		for(int i = 0; i < switches.length; i++) {

@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5980.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -81,8 +82,13 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData.pullGameData();
 		sensors.resetSensors();
+		SmartDashboard.putString("Game Data: ", DriverStation.getInstance().getGameSpecificMessage());
+		SmartDashboard.putBoolean("Switch 3 ", autonSwitches.getSwitchValues()[2]);
+		SmartDashboard.putBoolean("Switch 6 ", autonSwitches.getSwitchValues()[5]);
+		SmartDashboard.putBoolean("Switch 7 ", autonSwitches.getSwitchValues()[6]);
 		autonomousCommand = autonChooser.getAutonCommand();
 		SmartDashboard.putString("Auto Command: ", autonomousCommand.getName());
+		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -131,7 +137,7 @@ public class Robot extends IterativeRobot {
 		//System.out.println(right1.getSelectedSensorVelocity(0));
 		//System.out.println("-------");
 		//System.out.println("Robot.teleopPeriodic");
-		SmartDashboard.putBoolean("Dip: ", Robot.sensors.getDIPSwitch()); 
+		
 		Scheduler.getInstance().run();
 	}
 
