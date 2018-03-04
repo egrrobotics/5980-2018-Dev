@@ -83,9 +83,6 @@ public class Robot extends IterativeRobot {
 		Robot.gameData.pullGameData();
 		sensors.resetSensors();
 		SmartDashboard.putString("Game Data: ", DriverStation.getInstance().getGameSpecificMessage());
-		SmartDashboard.putBoolean("Switch 3 ", autonSwitches.getSwitchValues()[2]);
-		SmartDashboard.putBoolean("Switch 6 ", autonSwitches.getSwitchValues()[5]);
-		SmartDashboard.putBoolean("Switch 7 ", autonSwitches.getSwitchValues()[6]);
 		autonomousCommand = autonChooser.getAutonCommand();
 		SmartDashboard.putString("Auto Command: ", autonomousCommand.getName());
 		

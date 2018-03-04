@@ -12,6 +12,7 @@ import org.usfirst.frc.team5980.robot.commands.Position3DropRightScale;
 import org.usfirst.frc.team5980.robot.commands.Position3DropRightSwitch;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GetAuton {
 	
@@ -21,7 +22,7 @@ public class GetAuton {
 		
 		if(Robot.autonSwitches.getPosition() == 1) {
 			this.DropLeftSwitch();
-			this.DropLeftScale();
+			//this.DropLeftScale();
 			this.DropRightSwitch(); 
 		}
 		
@@ -32,7 +33,7 @@ public class GetAuton {
 		
 		if(Robot.autonSwitches.getPosition() == 3) {
 			this.DropRightSwitch();
-			this.DropRightScale();
+			//this.DropRightScale();
 			this.DropLeftSwitch();
 		}
 		if(autonCommand == null)
@@ -41,8 +42,9 @@ public class GetAuton {
 	}
 	
 	public void DropLeftSwitch() {
-		if(autonCommand != null)
+		if(autonCommand != null) {
 			return;
+		}
 		if(Robot.autonSwitches.getSwitchValues()[3] == false) 
 			return;
 		if(Robot.autonSwitches.getPosition() == 1 && Robot.gameData.NearSwitch == TeamSide.LEFT) {
@@ -63,7 +65,7 @@ public class GetAuton {
 	public void DropLeftScale() {
 		if(autonCommand != null)
 			return;
-		if(Robot.autonSwitches.getSwitchValues()[4] == false)
+		if(Robot.autonSwitches.getSwitchValues()[5] == false)
 			return;
 		if(Robot.autonSwitches.getPosition() == 1 && Robot.gameData.Scale == TeamSide.LEFT) {
 			autonCommand = new Position1DropLeftScale();
@@ -72,15 +74,16 @@ public class GetAuton {
 	}
 	
 	public void DropRightSwitch() {
-		if(autonCommand != null)
+		if(autonCommand != null) {
 			return;
-		if(Robot.autonSwitches.getSwitchValues()[5] == false)
+		}
+		if(Robot.autonSwitches.getSwitchValues()[4] == false)
 			return;
 		if(Robot.autonSwitches.getPosition() == 1 && Robot.gameData.NearSwitch == TeamSide.RIGHT) {
 			autonCommand = new Position1DropRightSwitch();
 			return;
 		}
-		if(Robot.autonSwitches.getPosition() == 3 && Robot.gameData.NearSwitch == TeamSide.LEFT) {
+		if(Robot.autonSwitches.getPosition() == 3 && Robot.gameData.NearSwitch == TeamSide.RIGHT) {
 			autonCommand = new Position3DropRightSwitch();
 			return;
 		}

@@ -22,7 +22,7 @@ public class GameData {
 		while (gameData.length() == 0 && loopLimit-- > 0) {
 			gameData = DriverStation.getInstance().getGameSpecificMessage();	
 		}
-		
+		 
 		this.parseGameData(gameData);
 	}
 	
