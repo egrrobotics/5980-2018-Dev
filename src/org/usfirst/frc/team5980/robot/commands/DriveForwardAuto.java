@@ -25,7 +25,7 @@ public class DriveForwardAuto extends Command {
 		this.maxSpeed = speed;
 		this.distance = distance;
 		this.heading = heading;
-		this.stopPID = new EGRPID(.000125, 0, 0);
+		this.stopPID = new EGRPID(.008, 0, 0);
 	}
 
 	public DriveForwardAuto(double speed, int distance, double heading, double stopP) {
@@ -59,7 +59,7 @@ public class DriveForwardAuto extends Command {
 		}
 		
 		Robot.driveTrain.setPower((speed - correction) * stopCorrection, (speed + correction) * stopCorrection);
-		SmartDashboard.putNumber("left encoder: ", Robot.sensors.getLeftEncoder());
+		//SmartDashboard.putNumber("left encoder: ", Robot.sensors.getLeftEncoder());
 
 	}
 

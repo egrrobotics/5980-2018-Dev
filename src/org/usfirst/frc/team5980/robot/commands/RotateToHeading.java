@@ -10,23 +10,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class RotateToHeading extends Command {
-	EGRPID rotatePID = new EGRPID(.04, 0, 0.28); //change speed: .35 for 90, .6 for 30, inter/extrapolate from there
+	EGRPID rotatePID = new EGRPID(.1, 0, 0); //change speed: .35 for 90, .6 for 30, inter/extrapolate from there
 	int heading;
 	double speed;
 	long stopTime;
 	
-    public RotateToHeading(int heading) {
+    public RotateToHeading(int heading, double speed) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
         this.heading = heading;
-       
+        this.speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	rotatePID.setTarget(heading);
     	stopTime = System.currentTimeMillis() + 3000;
-    	speed = (-.00416667*(Math.abs(heading-Robot.sensors.getYaw()))) + .725;
+    	//speed = (-.00416667*(Math.abs(heading-Robot.sensors.getYaw()))) + .725;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -44,13 +44,13 @@ public class RotateToHeading extends Command {
     	System.out.println(Robot.sensors.getYaw());
 
     	Robot.driveTrain.setPower(-speed * correction, speed * correction);
-    	SmartDashboard.putNumber("error: ", rotatePID.error);
+    	//SmartDashboard.putNumber("error: ", rotatePID.error);
     	//SmartDashboard.putNumber("total error: ", rotatePID.totalError);
     	//SmartDashboard.putNumber("correction: ", correction);
     	//SmartDashboard.putNumber("Rotate.speed: ", speed);
     	//SmartDashboard.putNumber("Rotate.correction: ", correction);
     	//SmartDashboard.putNumber("Rotate.heading: ", heading);
-    	SmartDashboard.putNumber("Rotate.Yaw: ", Robot.sensors.getYaw());
+    	//SmartDashboard.putNumber("Rotate.Yaw: ", Robot.sensors.getYaw());
     	//SmartDashboard.putNumber("Rotate.Yaw-heading: ", Robot.sensors.getYaw() - heading);
     	
     }

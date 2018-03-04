@@ -12,7 +12,7 @@ import org.usfirst.frc.team5980.robot.commands.Position3DropRightScale;
 import org.usfirst.frc.team5980.robot.commands.Position3DropRightSwitch;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 public class GetAuton {
 	
