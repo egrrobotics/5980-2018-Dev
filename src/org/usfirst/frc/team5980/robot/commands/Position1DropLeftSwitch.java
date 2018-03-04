@@ -8,21 +8,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Position1DropLeftSwitch extends CommandGroup {
 
     public Position1DropLeftSwitch() {
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
+       addParallel(new ElevatorForTime(1500, .5)); // raise to be over switch wall
+       addParallel(new TurretForTime(1000, .5)); // Turn turret towards switch
+       addSequential(new DriveForwardAuto(.5, 100, 0)); // at the same time drive to the switch
+       addSequential(new IntakeForTime(2000, 1)); // shoots out cube
     }
 }

@@ -56,7 +56,7 @@ public class OI {
 		Button buttonB = new JoystickButton(operator, 2); //button B on xbox
 		buttonB.whileActive(new SetIntakePower(1));		//sets intake to push out? box	
 		
-		Button buttonX = new JoystickButton(operator, 3);
+		Button buttonX = new JoystickButton(operator, 3); 
 		buttonX.whileActive(new SetActuatorPower(.3));
 		
 		Button buttonY = new JoystickButton(operator, 4);
