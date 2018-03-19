@@ -8,11 +8,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Position1DropRightSwitch extends CommandGroup {
 
     public Position1DropRightSwitch() {
-       addSequential(new DriveForwardAuto(.5, 150, 0));
-       addParallel(new ElevatorForTime(1500, .5));
-       addSequential(new RotateToHeading(-90, .5));
-       addParallel(new TurretForTime(1000, .5));
-       addSequential(new DriveForwardAuto(.5, 150, -90));
-       addSequential(new IntakeForTime(2000, 1));
+    	
+    	addSequential(new DriveForwardAuto(.4, 220, 0));//215, 135
+        addSequential(new RotateToHeading(-90, .3));
+        addSequential(new DriveForwardAuto(.3, 120, -90));
+        addSequential(new RotateToHeading(-117, .3)); 
+        addSequential(new DriveForwardAuto(.4, 40, -117));
+        addSequential(new TurretForTime(700, -1));
+        addSequential(new IntakeForTime(2000, -1)); 
+    	
     }
 }

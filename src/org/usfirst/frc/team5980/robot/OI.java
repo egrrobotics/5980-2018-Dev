@@ -7,9 +7,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5980.robot.commands.SetActuatorPower;
+import org.usfirst.frc.team5980.robot.commands.SetClimberPower;
+import org.usfirst.frc.team5980.robot.commands.SetClimberReleasePower;
 import org.usfirst.frc.team5980.robot.commands.SetElevatorPower;
 import org.usfirst.frc.team5980.robot.commands.SetIntakePower;
 import org.usfirst.frc.team5980.robot.commands.SetTurretPower;
+import org.usfirst.frc.team5980.robot.commands.TurretForTime;
 import org.usfirst.frc.team5980.robot.triggers.*;
 
 /**
@@ -22,9 +25,9 @@ public class OI {
 	public Joystick operator = new Joystick(1);
 	
 	public OI() {
-		if (driver.getButtonCount() > 0)
+		//if (driver.getButtonCount() > 0)
 			this.driverSetup();
-		if (operator.getButtonCount() > 0)
+		//if (operator.getButtonCount() > 0)
 			this.operatorSetup();
 		
 		// ***
@@ -43,7 +46,12 @@ public class OI {
 		
 		Button buttonRB = new JoystickButton(driver, XboxTrigger.RB); 
 		buttonRB.whileActive(new SetTurretPower(-1));
+		
+		Button buttonA = new JoystickButton(driver, 1);
+		buttonA.whenPressed(new TurretForTime(2000, 1));
 	
+		Button buttonB = new JoystickButton(driver, 2);
+		buttonB.whenPressed(new TurretForTime(2000, -1));
 	}
 	
 	private void operatorSetup() {
@@ -57,16 +65,19 @@ public class OI {
 		buttonB.whileActive(new SetIntakePower(1));		//sets intake to push out? box	
 		
 		Button buttonX = new JoystickButton(operator, 3); 
-		buttonX.whileActive(new SetActuatorPower(.3));
+		buttonX.whileActive(new SetClimberPower(1));
 		
-		Button buttonY = new JoystickButton(operator, 4);
-		buttonY.whileActive(new SetActuatorPower(-.3));
+		Button buttonBack = new JoystickButton(operator, 7); 
+		buttonBack.whileActive(new SetClimberPower(1));
 		
-		Button buttonLB = new JoystickButton(operator, 5);
-		buttonLB.whileActive(new SetElevatorPower(1));
+		Button buttonStart = new JoystickButton(operator, 8); // releases climber
+		buttonStart.whileActive(new SetClimberReleasePower(1));
 		
-		Button buttonRB = new JoystickButton(operator, 6);
-		buttonRB.whileActive(new SetElevatorPower(-1)); 
+		Button buttonLB = new JoystickButton(operator, 5);// lowers elevator
+		buttonLB.whileActive(new SetElevatorPower(.3));
+		
+		Button buttonRB = new JoystickButton(operator, 6);// raises elevator
+		buttonRB.whileActive(new SetElevatorPower(-.5)); 
 		
 	
 	}

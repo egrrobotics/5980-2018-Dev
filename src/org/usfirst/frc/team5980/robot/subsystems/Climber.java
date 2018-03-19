@@ -8,22 +8,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Intake extends Subsystem {
-
+public class Climber extends Subsystem {
+	TalonSRX climber = new TalonSRX(9);
+	TalonSRX climberRelease = new TalonSRX(8);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	TalonSRX intake1 = new TalonSRX(1);
-	TalonSRX intake2 = new TalonSRX(2);
+	public void setClimberPower(double power) {
+		climber.set(ControlMode.PercentOutput, power);
+	}
 	
-	public void setIntakePower(double power) {
-		intake1.set(ControlMode.PercentOutput, power);
-		intake2.set(ControlMode.PercentOutput, power);
+	public void setReleasePower(double power) {
+		climberRelease.set(ControlMode.PercentOutput, power);
 	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	
     }
 }
 

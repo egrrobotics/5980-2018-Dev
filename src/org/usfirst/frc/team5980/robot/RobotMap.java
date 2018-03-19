@@ -31,7 +31,7 @@ public class RobotMap {
 	public static int rightEncoderChannelA = 8;
 	public static int rightEncoderChannelB = 9;
 	
-	public static double encoderCountsPerInch = 189;
+	public static double encoderCountsPerInch = 207;
 	
 	public static void configureJacob() {
 		System.out.println("Jacob");

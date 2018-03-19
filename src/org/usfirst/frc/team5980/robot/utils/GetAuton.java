@@ -5,11 +5,14 @@ import org.usfirst.frc.team5980.robot.commands.DriveForwardAuto;
 import org.usfirst.frc.team5980.robot.commands.Position1DropLeftScale;
 import org.usfirst.frc.team5980.robot.commands.Position1DropLeftSwitch;
 import org.usfirst.frc.team5980.robot.commands.Position1DropRightSwitch;
+import org.usfirst.frc.team5980.robot.commands.Position2DoubleLeft;
+import org.usfirst.frc.team5980.robot.commands.Position2DoubleRight;
 import org.usfirst.frc.team5980.robot.commands.Position2DropLeftSwitch;
 import org.usfirst.frc.team5980.robot.commands.Position2DropRightSwitch;
 import org.usfirst.frc.team5980.robot.commands.Position3DropLeftSwitch;
 import org.usfirst.frc.team5980.robot.commands.Position3DropRightScale;
 import org.usfirst.frc.team5980.robot.commands.Position3DropRightSwitch;
+import org.usfirst.frc.team5980.robot.commands.RotateToHeading;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -37,7 +40,7 @@ public class GetAuton {
 			this.DropLeftSwitch();
 		}
 		if(autonCommand == null)
-			autonCommand = new DriveForwardAuto(.5, 120, 0); //backup: crosses baseline if can't interpret switches and GameData
+			autonCommand = new DriveForwardAuto(.3, 100, 0); //backup: crosses baseline if can't interpret switches and GameData
 		return autonCommand;
 	}
 	
@@ -56,7 +59,7 @@ public class GetAuton {
 			return;
 		}
 		if(Robot.autonSwitches.getPosition() == 2 && Robot.gameData.NearSwitch == TeamSide.LEFT) {
-			autonCommand = new Position2DropLeftSwitch();
+			autonCommand = new Position2DoubleLeft();
 			return;
 		}
 		
@@ -88,7 +91,7 @@ public class GetAuton {
 			return;
 		}
 		if(Robot.autonSwitches.getPosition() == 2 && Robot.gameData.NearSwitch == TeamSide.RIGHT) {
-			autonCommand = new Position2DropRightSwitch();
+			autonCommand = new Position2DoubleRight();
 			return;
 		}
 	}

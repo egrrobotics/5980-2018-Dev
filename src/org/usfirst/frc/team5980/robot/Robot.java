@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static final Elevator elevator = new Elevator();
 	public static final Intake intake = new Intake();
 	public static final ElevatorTilt actuator = new ElevatorTilt();
+	public static final Climber climber = new Climber();
 	public static OI oi;    
 	public static GameData gameData = new GameData();		
 	public static AutonSwitches autonSwitches = new AutonSwitches();
@@ -82,9 +83,10 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData.pullGameData();
 		sensors.resetSensors();
-		SmartDashboard.putString("Game Data: ", DriverStation.getInstance().getGameSpecificMessage());
+		//SmartDashboard.putString("Game Data: ", DriverStation.getInstance().getGameSpecificMessage());
 		autonomousCommand = autonChooser.getAutonCommand();
-		SmartDashboard.putString("Auto Command: ", autonomousCommand.getName());
+		//SmartDashboard.putString("Auto Command: ", autonomousCommand.getName());
+		
 		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -105,6 +107,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		//System.out.println("Robot.autonomousPeriodic");
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Emcoder: ", sensors.getRightEncoder());
+		SmartDashboard.putNumber("Heading: ", Robot.sensors.getYaw());
 		//updateSmartdashboard();
 	}
 
@@ -134,7 +138,7 @@ public class Robot extends IterativeRobot {
 		//System.out.println(right1.getSelectedSensorVelocity(0));
 		//System.out.println("-------");
 		//System.out.println("Robot.teleopPeriodic");
-		
+		SmartDashboard.putNumber("Right E: ", sensors.getRightEncoder());
 		Scheduler.getInstance().run();
 	}
 

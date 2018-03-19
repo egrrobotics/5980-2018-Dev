@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class RotateToHeading extends Command {
-	EGRPID rotatePID = new EGRPID(.1, 0, 0); //change speed: .35 for 90, .6 for 30, inter/extrapolate from there
+	EGRPID rotatePID = new EGRPID(.2, 0, 0); //change speed: .35 for 90, .6 for 30, inter/extrapolate from there
 	int heading;
 	double speed;
 	long stopTime;
@@ -40,8 +40,8 @@ public class RotateToHeading extends Command {
     		correction = -1;
     	}
     	
-    	System.out.print("rotating...");
-    	System.out.println(Robot.sensors.getYaw());
+    	//System.out.print("rotating...");
+    	//System.out.println(Robot.sensors.getYaw());
 
     	Robot.driveTrain.setPower(-speed * correction, speed * correction);
     	//SmartDashboard.putNumber("error: ", rotatePID.error);
@@ -64,7 +64,7 @@ public class RotateToHeading extends Command {
     		System.out.print("NOT MOVING ");
     	System.out.print(Robot.sensors.getYaw());
     	*/
-    	boolean headingReached = Math.abs(Robot.sensors.getYaw() - heading) < 1;
+    	boolean headingReached = Math.abs(Robot.sensors.getYaw() - heading) <= 2;
     	boolean isDone = headingReached && Robot.sensors.isMoving == false;
        /* 
     	if (isDone)
@@ -72,7 +72,7 @@ public class RotateToHeading extends Command {
     	else
     		System.out.println(" NOT DONE");
     	*/
-    	return isDone || System.currentTimeMillis() > stopTime;   
+    	return headingReached || System.currentTimeMillis() > stopTime;   
     }
 
     // Called once after isFinished returns true

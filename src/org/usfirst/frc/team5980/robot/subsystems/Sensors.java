@@ -71,14 +71,14 @@ public class Sensors extends Subsystem {
 	
 	private int getLeftEncoderPosition() {
 		if (this.usingTalonEncoders)
-			return Talons.leftTalon.getSelectedSensorPosition(0);
+			return -Talons.leftTalon.getSelectedSensorPosition(0);
 		else
 			return this.leftEncoder.get();
 	}
 	
 	private int getRightEncoderPosition() {
 		if (this.usingTalonEncoders)
-			return Talons.rightTalon.getSelectedSensorPosition(0);
+			return -Talons.rightTalon.getSelectedSensorPosition(0);
 		else
 			return this.rightEncoder.get();
 	}

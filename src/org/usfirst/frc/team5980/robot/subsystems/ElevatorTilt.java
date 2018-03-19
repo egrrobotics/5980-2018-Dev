@@ -12,7 +12,7 @@ public class ElevatorTilt extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	TalonSRX actuator = new TalonSRX(8);
+	TalonSRX actuator = new TalonSRX(89);
 	
 	public void setPower(double power) {
 		actuator.set(ControlMode.PercentOutput, power);

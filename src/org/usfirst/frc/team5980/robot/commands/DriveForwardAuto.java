@@ -25,7 +25,7 @@ public class DriveForwardAuto extends Command {
 		this.maxSpeed = speed;
 		this.distance = distance;
 		this.heading = heading;
-		this.stopPID = new EGRPID(.008, 0, 0);
+		this.stopPID = new EGRPID(.04, 0, 0);
 	}
 
 	public DriveForwardAuto(double speed, int distance, double heading, double stopP) {
@@ -38,15 +38,15 @@ public class DriveForwardAuto extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		encoderTarget = Robot.sensors.getLeftEncoder() + distance * Robot.sensors.encoderCountsPerInch;
+		encoderTarget = Robot.sensors.getRightEncoder() + distance * Robot.sensors.encoderCountsPerInch;
 		drivePID.setTarget(heading);
 		stopPID.setTarget(encoderTarget);
-		stopTime = System.currentTimeMillis() + 7000;
+		stopTime = System.currentTimeMillis() +7000;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		double stopCorrection = stopPID.getCorrection(Robot.sensors.getLeftEncoder());
+		double stopCorrection = stopPID.getCorrection(Robot.sensors.getRightEncoder());
 		if (stopCorrection > 1) {
 			stopCorrection = 1;
 		}
@@ -54,18 +54,18 @@ public class DriveForwardAuto extends Command {
 		if (speed < maxSpeed) {
 			speed += 0.04;
 		}
-		if (encoderTarget - Robot.sensors.getLeftEncoder() < 300) {
+		if (encoderTarget - Robot.sensors.getRightEncoder() < 300) {
 			correction = 0;
 		}
 		
 		Robot.driveTrain.setPower((speed - correction) * stopCorrection, (speed + correction) * stopCorrection);
-		//SmartDashboard.putNumber("left encoder: ", Robot.sensors.getLeftEncoder());
+		//SmartDashboard.putNumber("left encoder: ", Robot.sensors.getRightEncoder());
 
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.sensors.getLeftEncoder() > encoderTarget - 30 || System.currentTimeMillis() > stopTime;
+		return Robot.sensors.getRightEncoder() > encoderTarget - 30 || System.currentTimeMillis() > stopTime;
 	}
 
 	// Called once after isFinished returns true
