@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5980.robot.commands.SetActuatorPower;
 import org.usfirst.frc.team5980.robot.commands.SetClimberPower;
-import org.usfirst.frc.team5980.robot.commands.SetClimberReleasePower;
+import org.usfirst.frc.team5980.robot.commands.SetClimberReleaseAngle;
+
 import org.usfirst.frc.team5980.robot.commands.SetElevatorPower;
 import org.usfirst.frc.team5980.robot.commands.SetIntakePower;
 import org.usfirst.frc.team5980.robot.commands.SetTurretPower;
@@ -42,10 +43,10 @@ public class OI {
 	private void driverSetup() {
 		
 		Button buttonLB = new JoystickButton(driver, XboxTrigger.LB); 
-		buttonLB.whileActive(new SetTurretPower(1));
+		buttonLB.whileActive(new SetTurretPower(-1));
 		
 		Button buttonRB = new JoystickButton(driver, XboxTrigger.RB); 
-		buttonRB.whileActive(new SetTurretPower(-1));
+		buttonRB.whileActive(new SetTurretPower(1));
 		
 		Button buttonA = new JoystickButton(driver, 1);
 		buttonA.whenPressed(new TurretForTime(2000, 1));
@@ -71,13 +72,13 @@ public class OI {
 		buttonBack.whileActive(new SetClimberPower(1));
 		
 		Button buttonStart = new JoystickButton(operator, 8); // releases climber
-		buttonStart.whileActive(new SetClimberReleasePower(1));
+		buttonStart.whenPressed(new SetClimberReleaseAngle(.5));
 		
 		Button buttonLB = new JoystickButton(operator, 5);// lowers elevator
-		buttonLB.whileActive(new SetElevatorPower(.3));
+		buttonLB.whileActive(new SetElevatorPower(.5));
 		
 		Button buttonRB = new JoystickButton(operator, 6);// raises elevator
-		buttonRB.whileActive(new SetElevatorPower(-.5)); 
+		buttonRB.whileActive(new SetElevatorPower(-.85)); 
 		
 	
 	}

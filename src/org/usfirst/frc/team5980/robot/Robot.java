@@ -1,12 +1,18 @@
 
 package org.usfirst.frc.team5980.robot;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.opencv.core.Mat;
 import org.usfirst.frc.team5980.robot.commands.*;
 import org.usfirst.frc.team5980.robot.subsystems.*;
 import org.usfirst.frc.team5980.robot.utils.GameData;
@@ -37,7 +43,7 @@ public class Robot extends IterativeRobot {
 	private Command autonomousCommand;
 	private SendableChooser<Command> chooser = new SendableChooser<>();
 	public static Sensors sensors = new Sensors();	
-	
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -50,6 +56,8 @@ public class Robot extends IterativeRobot {
 		//this.updateSmartdashboard();
 		RobotMap.configureNathan();
 		sensors.resetSensors();
+		//climber.setReleaseAngle(.75);
+		
 	}
 
 	/**
@@ -116,7 +124,8 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		TalonSRX right1 = new TalonSRX(3);
 		right1.setSelectedSensorPosition(0, 0, 0);
-		
+		climber.setReleaseAngle(.75);
+
 		//System.out.println("Robot.teleopInit");
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to

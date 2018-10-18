@@ -3,6 +3,7 @@ package org.usfirst.frc.team5980.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -10,15 +11,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem {
 	TalonSRX climber = new TalonSRX(9);
-	TalonSRX climberRelease = new TalonSRX(8);
+	
+	Servo climberRelease = new Servo(0);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public void setClimberPower(double power) {
 		climber.set(ControlMode.PercentOutput, power);
 	}
 	
-	public void setReleasePower(double power) {
-		climberRelease.set(ControlMode.PercentOutput, power);
+	public void setReleaseAngle(double angle) {
+		climberRelease.set(angle);
 	}
 	
     public void initDefaultCommand() {

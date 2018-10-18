@@ -10,24 +10,33 @@ public class Position2DoubleLeft extends CommandGroup {
     public Position2DoubleLeft() {
     	
     	
-    	addSequential(new DriveForwardAuto(.3, 20, 0));
-        addSequential(new RotateToHeading(35, .3));
+    	addSequential(new DriveForwardAuto(.5, 20, 0));
+        addSequential(new RotateToHeading(35, .5));
         //addParallel(new ElevatorForTime(1500, .5));
-        addParallel(new TurretForTime(350, -1));
+        addParallel(new TurretForTime(500, -1));
         addSequential(new DriveForwardAuto(.4, 90, 35));
-        addSequential(new IntakeForTime(1000, -1));
-        addParallel(new ElevatorForTime(2500, .3));
-    	addSequential(new DriveBackwardsAuto(.3, 35, 35));
+        addSequential(new IntakeForTime(500, -1));
+        
+        addParallel(new ElevatorForTime(2500, .35));
+    	addSequential(new DriveBackwardsAuto(.5, 35, 35));
     	
-    	addSequential(new RotateToHeading(130, .35));
+    	addSequential(new RotateToHeading(130, .5));
     	addSequential(new TurretForTime(1700, -1));
     	addParallel(new IntakeForTime(1300, 1));
-    	addSequential(new DriveBackwardsAuto(.3, 10, 130));
+    	addSequential(new DriveBackwardsAuto(.5, 10, 130));
     	
     	
-    	addSequential(new DriveForwardAuto(.3, 20, 130));
+    	addSequential(new DriveForwardAuto(.5, 8, 130));
+    	addSequential(new RotateToHeading(35, .5));
+    	addSequential(new ElevatorForTime(2000, -.8));
+    	addParallel(new ElevatorForTime(1600, -.5));
+    	addSequential(new TurretForTime(1600, 1));
+    	addParallel(new ElevatorForTime(2000, -.5));
+    	addSequential(new DriveForwardAuto(.6, 37, 35));
+    	addSequential(new IntakeForTime(1300, -1));
+    	
     	/*
-    	addSequential(new RotateToHeading(-130, .35));
+    	addSequential(new RotateToHeading(35, .35));
     	addSequential(new ElevatorForTime(2200, -.7));
     	addSequential(new DriveBackwardsAuto(.3, 35, -130));
     	addSequential(new IntakeForTime(1000, -1));
